@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scennes/Player.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Alex/spr_alex_idle_0.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 13, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+extents = Vector2( 16.0789, 39.2012 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+extents = Vector2( 22.8316, 10.2047 )
+
+[node name="Main" type="Node"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 520, 536 )
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2( -81.8506, 385.851 )
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor2"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor2"]
+position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 494.688, 150.515 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="ColisionInferior" type="CollisionShape2D" parent="Player"]
+position = Vector2( -1.19168, 5.16376 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Player"]
+position = Vector2( -3.05176e-005, 0 )
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2( -0.397217, -6.75262 )
+shape = SubResource( 3 )
+
