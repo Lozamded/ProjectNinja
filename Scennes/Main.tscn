@@ -1,27 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scennes/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Alex/spr_alex_idle_0.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/SetDirection.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-
 extents = Vector2( 13, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-
-extents = Vector2( 16.0789, 22.7493 )
+extents = Vector2( 31.967, 9.69293 )
 
 [sub_resource type="RectangleShape2D" id=3]
-
-extents = Vector2( 22.4434, 10 )
-
-[sub_resource type="RectangleShape2D" id=4]
-
-extents = Vector2( 22.8316, 10.2047 )
+extents = Vector2( 31.8904, 31.7586 )
 
 [node name="Main" type="Node"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 520, 536 )
 scale = Vector2( 15.75, 0.75 )
 __meta__ = {
@@ -41,6 +35,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor2" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( -81.8506, 385.851 )
 scale = Vector2( 15.75, 0.75 )
 __meta__ = {
@@ -59,36 +54,135 @@ position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 494.688, 150.515 )
+[node name="Floor3" type="StaticBody2D" parent="." groups=[
+"grab",
+]]
+editor/display_folded = true
+position = Vector2( 1005.89, 53.0091 )
+rotation = -1.57678
+scale = Vector2( 15.75, 0.75 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+dir = -1
+
+[node name="Color" type="ColorRect" parent="Floor3"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor3"]
+position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor4" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 177.775, 634.958 )
+rotation = -3.54262
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor4"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor4"]
+position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor5" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( -215.429, 241.48 )
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor5"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor5"]
+position = Vector2( 0, -22.4561 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Floor6" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1020.89, 738.092 )
+rotation = -2.49932
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor6"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor6"]
+position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor7" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1279.87, 235.928 )
+scale = Vector2( 15.75, 0.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor7"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor7"]
+position = Vector2( 0, -22.4561 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Grab" type="StaticBody2D" parent="." groups=[
+"grab",
+]]
+editor/display_folded = true
+position = Vector2( 412.942, 386.35 )
+scale = Vector2( -0.273832, 0.597457 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Player"]
-scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
-
-[node name="ColisionInferior" type="CollisionShape2D" parent="Player"]
-position = Vector2( -0.704009, 18.331 )
-shape = SubResource( 2 )
-
-[node name="CollisionSuperior" type="CollisionShape2D" parent="Player"]
-position = Vector2( -0.487671, -15.1179 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab"]
+scale = Vector2( 1.00826, 1 )
 shape = SubResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="Player"]
-position = Vector2( -3.05176e-005, 0 )
-space_override = 1
+[node name="Color" type="ColorRect" parent="Grab"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.92549, 0.976471, 0.0588235, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
-position = Vector2( 0.0904539, -6.26495 )
-shape = SubResource( 4 )
-
-[node name="ColorRect" type="ColorRect" parent="Player"]
-margin_left = -75.0
-margin_top = -80.0
-margin_right = -35.0
-margin_bottom = -40.0
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 405.099, 271.536 )
 
