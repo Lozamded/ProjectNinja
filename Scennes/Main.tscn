@@ -54,18 +54,15 @@ position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Floor3" type="StaticBody2D" parent="." groups=[
-"grab",
-]]
+[node name="Floor3" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 1005.89, 53.0091 )
+position = Vector2( 1002.46, 51.2943 )
 rotation = -1.57678
 scale = Vector2( 15.75, 0.75 )
-script = ExtResource( 1 )
+z_index = 1
 __meta__ = {
 "_edit_group_": true
 }
-dir = -1
 
 [node name="Color" type="ColorRect" parent="Floor3"]
 margin_left = -32.0
@@ -143,7 +140,7 @@ shape = SubResource( 1 )
 
 [node name="Floor7" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 1279.87, 235.928 )
+position = Vector2( 1174.79, 174.066 )
 scale = Vector2( 15.75, 0.75 )
 __meta__ = {
 "_edit_group_": true
@@ -165,8 +162,9 @@ one_way_collision = true
 "grab",
 ]]
 editor/display_folded = true
-position = Vector2( 412.942, 386.35 )
+position = Vector2( 411.786, 386.752 )
 scale = Vector2( -0.273832, 0.597457 )
+z_index = 500
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -177,6 +175,54 @@ scale = Vector2( 1.00826, 1 )
 shape = SubResource( 3 )
 
 [node name="Color" type="ColorRect" parent="Grab"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.92549, 0.976471, 0.0588235, 1 )
+
+[node name="Grab2" type="StaticBody2D" parent="." groups=[
+"grab",
+]]
+editor/display_folded = true
+position = Vector2( 992.822, 328.147 )
+scale = Vector2( -0.33738, 3.70228 )
+z_index = 500
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+dir = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab2"]
+scale = Vector2( 1.00826, 1 )
+shape = SubResource( 3 )
+
+[node name="Color" type="ColorRect" parent="Grab2"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.92549, 0.976471, 0.0588235, 1 )
+
+[node name="Grab3" type="StaticBody2D" parent="." groups=[
+"grab",
+]]
+editor/display_folded = true
+position = Vector2( 989.824, 37.8765 )
+scale = Vector2( -0.328969, 1.87746 )
+z_index = 500
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+dir = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab3"]
+scale = Vector2( 1.00826, 1 )
+shape = SubResource( 3 )
+
+[node name="Color" type="ColorRect" parent="Grab3"]
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 32.0
