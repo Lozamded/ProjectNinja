@@ -56,9 +56,9 @@ shape = SubResource( 1 )
 
 [node name="Floor3" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 1002.46, 51.2943 )
+position = Vector2( 1011.09, 252.032 )
 rotation = -1.57678
-scale = Vector2( 15.75, 0.75 )
+scale = Vector2( 8.35017, 0.45163 )
 z_index = 1
 __meta__ = {
 "_edit_group_": true
@@ -185,7 +185,7 @@ color = Color( 0.92549, 0.976471, 0.0588235, 1 )
 "grab",
 ]]
 editor/display_folded = true
-position = Vector2( 992.822, 328.147 )
+position = Vector2( 1007.85, 328.147 )
 scale = Vector2( -0.33738, 3.70228 )
 z_index = 500
 script = ExtResource( 1 )
@@ -209,8 +209,8 @@ color = Color( 0.92549, 0.976471, 0.0588235, 1 )
 "grab",
 ]]
 editor/display_folded = true
-position = Vector2( 989.824, 37.8765 )
-scale = Vector2( -0.328969, 1.87746 )
+position = Vector2( 1006.92, 29.3265 )
+scale = Vector2( -0.328969, 1.31746 )
 z_index = 500
 script = ExtResource( 1 )
 __meta__ = {
@@ -229,6 +229,33 @@ margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0.92549, 0.976471, 0.0588235, 1 )
 
+[node name="Grab4" type="StaticBody2D" parent="." groups=[
+"grab",
+]]
+editor/display_folded = true
+position = Vector2( 1013.24, 29.3265 )
+scale = Vector2( -0.328969, 1.31746 )
+z_index = 500
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab4"]
+scale = Vector2( 1.00826, 1 )
+shape = SubResource( 3 )
+
+[node name="Color" type="ColorRect" parent="Grab4"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.92549, 0.976471, 0.0588235, 1 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 405.099, 271.536 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( -3.2998, 3.505 )
+current = true
 

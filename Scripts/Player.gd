@@ -80,7 +80,7 @@ func _physics_process(delta):
 				#print ("es un escalable")
 				grab = true
 				jump = true
-				grabMovement = 0
+				#grabMovement = 0
 				#print("Grab dir " + str(col.dir))
 				match col.dir:
 					1:
@@ -93,9 +93,6 @@ func _physics_process(delta):
 						dir = -1
 	else:
 		grab = false
-		
-		
-
 
 	
 	if Input.is_action_pressed("ui_run"):
