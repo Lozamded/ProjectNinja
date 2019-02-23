@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/SetDirection.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 32 )
@@ -30,7 +31,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -50,7 +51,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor2"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -72,7 +73,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor3"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -93,7 +94,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor4"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -134,7 +135,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor6"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -252,7 +253,11 @@ margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0.92549, 0.976471, 0.0588235, 1 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="EnermyTest" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1405.82, 126.045 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
 position = Vector2( 405.099, 271.536 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

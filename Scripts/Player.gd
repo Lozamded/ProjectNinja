@@ -20,17 +20,20 @@ var dir = 1
 var dirSalto = 0
 var grab = false
 var grabMovement = 1
+var canGrab = true
 
 var canAttack = true
 var attack = false
 var sprite_previo = ""
 var attackTimer = 12
+var grabTimer = 0
 
 func _physics_process(delta):
 	
-	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 200 * correr * dificultadsalto 
+	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 225 * correr * dificultadsalto 
 	
-	print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
+	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
+	print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
 	
 	if Input.is_action_pressed("ui_right") and grab == false:
 		dir = 1
@@ -41,7 +44,6 @@ func _physics_process(delta):
 		dir = -1
 		$SpriteUp.flip_h = true
 		$SpriteDown.flip_h = true
-	
 	
 	
 	colisionador = $Area2D.get_overlapping_bodies()
@@ -76,12 +78,11 @@ func _physics_process(delta):
 	
 	if colisionador.size() > 1 and not is_on_floor():
 		for col in colisionador:
-			if col.is_in_group("grab"):
+			if col.is_in_group("grab") and canGrab and grab == false:
+				canGrab = false
+				grabTimer = 25
 				#print ("es un escalable")
 				grab = true
-				jump = true
-				#grabMovement = 0
-				#print("Grab dir " + str(col.dir))
 				match col.dir:
 					1:
 						$SpriteUp.flip_h = false
@@ -93,7 +94,16 @@ func _physics_process(delta):
 						dir = -1
 	else:
 		grab = false
+		
+	
+	if grabTimer > 0:
+		grabTimer -= 100 * delta
+	else:
+		grabTimer = 0
+		canGrab = true
 
+	if grab:
+		jump = true
 	
 	if Input.is_action_pressed("ui_run"):
 		correr = corrida
@@ -122,8 +132,6 @@ func _physics_process(delta):
 		canAttack = true
 		attack = false
 		
-	
-	
 
 	
 	if Input.is_action_just_pressed("ui_accept") and jump:
@@ -165,7 +173,7 @@ func _physics_process(delta):
 			$SpriteDown.animation = "Fall"
 			
 		if grab == false:
-			gravity += 1625 * delta
+			gravity += 1450 * delta
 			grabMovement = 1
 		else:
 			gravity = 0
