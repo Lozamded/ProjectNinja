@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Ninja/ninja_stand1_SUP.png" type="Texture" id=2]
@@ -91,6 +91,9 @@ extents = Vector2( 11.1131, 29.2336 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14.3617, 8.62289 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 13.486, 29.4336 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -106,7 +109,7 @@ playing = true
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "Run"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -114,13 +117,21 @@ playing = true
 position = Vector2( -1.17966, 1.0275 )
 shape = SubResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionGrab" type="Area2D" parent="."]
 position = Vector2( -3.05176e-05, 0 )
 space_override = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionGrab"]
 position = Vector2( -0.385193, -15.3023 )
 shape = SubResource( 4 )
+
+[node name="CollisionEnemy" type="Area2D" parent="."]
+position = Vector2( -3.05176e-05, 0 )
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionEnemy"]
+position = Vector2( -1.16259, 1.16259 )
+shape = SubResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

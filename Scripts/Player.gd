@@ -14,7 +14,11 @@ var controlEnSalto = 1
 var correr = 1
 var dificultadsalto = 1
 const corrida = 2.25
+
+var colisionadorGrab
+var colisionadorEnemy
 var colisionador
+
 var gravity = 0
 var dir = 1
 var dirSalto = 0
@@ -33,7 +37,7 @@ func _physics_process(delta):
 	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 225 * correr * dificultadsalto 
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
-	print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
+	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
 	
 	if Input.is_action_pressed("ui_right") and grab == false:
 		dir = 1
@@ -46,7 +50,9 @@ func _physics_process(delta):
 		$SpriteDown.flip_h = true
 	
 	
-	colisionador = $Area2D.get_overlapping_bodies()
+	colisionadorGrab = $CollisionGrab.get_overlapping_bodies()
+	colisionadorEnemy = $CollisionEnemy.get_overlapping_bodies()
+	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
 		
 	if is_on_floor():
@@ -76,8 +82,10 @@ func _physics_process(delta):
 				dificultadsalto = 1
 				
 	
-	if colisionador.size() > 1 and not is_on_floor():
-		for col in colisionador:
+	##Agarre##
+	
+	if colisionadorGrab.size() > 1 and not is_on_floor():
+		for col in colisionadorGrab:
 			if col.is_in_group("grab") and canGrab and grab == false:
 				canGrab = false
 				grabTimer = 25
@@ -95,6 +103,10 @@ func _physics_process(delta):
 	else:
 		grab = false
 		
+	if colisionadorEnemy.size() > 1:
+		for col in colisionadorEnemy:
+			if col.is_in_group("Enemys"):
+				print ("Toque un enemigo")
 	
 	if grabTimer > 0:
 		grabTimer -= 100 * delta
@@ -104,6 +116,8 @@ func _physics_process(delta):
 
 	if grab:
 		jump = true
+		
+	##----##
 	
 	if Input.is_action_pressed("ui_run"):
 		correr = corrida
@@ -187,8 +201,9 @@ func _physics_process(delta):
 			grabMovement = 0
 
 		
-	var choca = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
+	var colliders = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
 	
-	if not choca.y and saltando:
+	if not colliders.y and saltando:
 		saltando = false
 		subida = 0
+		
