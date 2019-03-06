@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/ufo.png-4b6c9c865fcf97182df7f8df2f58e235.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

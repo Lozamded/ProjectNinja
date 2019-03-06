@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/ninja_fall_INF.png-a4f3e962704d3ae39897a227f2f90e7f.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
