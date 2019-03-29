@@ -15,7 +15,6 @@ var correr = 1
 var dificultadsalto = 1
 const corrida = 2.25
 
-var colisionadorGrab
 var colisionadorEnemy
 var colisionador
 
@@ -50,7 +49,6 @@ func _physics_process(delta):
 		$SpriteDown.flip_h = true
 	
 	
-	colisionadorGrab = $CollisionGrab.get_overlapping_bodies()
 	colisionadorEnemy = $CollisionEnemy.get_overlapping_bodies()
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
@@ -84,22 +82,21 @@ func _physics_process(delta):
 	
 	##Agarre##
 	
-	if colisionadorGrab.size() > 1 and not is_on_floor():
-		for col in colisionadorGrab:
-			if col.is_in_group("grab") and canGrab and grab == false:
-				canGrab = false
-				grabTimer = 25
-				#print ("es un escalable")
-				grab = true
-				match col.dir:
-					1:
-						$SpriteUp.flip_h = false
-						$SpriteDown.flip_h = false
-						dir = 1
-					-1:
-						$SpriteUp.flip_h = true
-						$SpriteDown.flip_h = true
-						dir = -1
+	if is_on_wall() and not is_on_floor() and not is_on_ceiling():
+		if canGrab and grab == false:
+			canGrab = false
+			grabTimer = 25
+			#print ("es un escalable")
+			grab = true
+			match dir:
+				-1:
+					$SpriteUp.flip_h = false
+					$SpriteDown.flip_h = false
+					dir = 1
+				1:
+					$SpriteUp.flip_h = true
+					$SpriteDown.flip_h = true
+					dir = -1
 	else:
 		grab = false
 		
@@ -146,7 +143,7 @@ func _physics_process(delta):
 		canAttack = true
 		attack = false
 		
-
+#Saltos
 	
 	if Input.is_action_just_pressed("ui_accept") and jump:
 		saltando = true
@@ -155,7 +152,7 @@ func _physics_process(delta):
 		jump = false
 		
 		if grab == true:
-			dificultadsalto = 0.85
+			dificultadsalto = 0.95
 			match dir:
 				1:
 					move_x += 615
@@ -203,7 +200,7 @@ func _physics_process(delta):
 		
 	var colliders = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
 	
-	if not colliders.y and saltando:
+	if is_on_ceiling():
 		saltando = false
 		subida = 0
 		
