@@ -15,7 +15,6 @@ var correr = 1
 var dificultadsalto = 1
 const corrida = 2.25
 
-var colisionadorEnemy
 var colisionador
 
 var gravity = 0
@@ -48,8 +47,6 @@ func _physics_process(delta):
 		$SpriteUp.flip_h = true
 		$SpriteDown.flip_h = true
 	
-	
-	colisionadorEnemy = $CollisionEnemy.get_overlapping_bodies()
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
 		
@@ -100,10 +97,6 @@ func _physics_process(delta):
 	else:
 		grab = false
 		
-	if colisionadorEnemy.size() > 1:
-		for col in colisionadorEnemy:
-			if col.is_in_group("Enemys"):
-				print ("Toque un enemigo")
 	
 	if grabTimer > 0:
 		grabTimer -= 100 * delta
@@ -152,7 +145,7 @@ func _physics_process(delta):
 		jump = false
 		
 		if grab == true:
-			dificultadsalto = 0.95
+			dificultadsalto = 0.25
 			match dir:
 				1:
 					move_x += 615
@@ -199,6 +192,15 @@ func _physics_process(delta):
 
 		
 	var colliders = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
+	
+	if get_slide_count( )>0:
+		for i in range(get_slide_count()):
+			var col = get_slide_collision(i)
+			if col.collider.is_in_group("Enemys"):
+				print ("Toque un enemigo")
+				jump = true
+				
+
 	
 	if is_on_ceiling():
 		saltando = false

@@ -1,12 +1,12 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Ninja/ninja_run1_SUP.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Ninja/ninja_run2_SUP.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Ninja/ninja_run3_SUP.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Ninja/ninja_run4_SUP.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Ninja/ninja_stand1_SUP.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Ninja/ninja_stand2_SUP.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Ninja/ninja_stand1_SUP.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Ninja/ninja_stand2_SUP.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Ninja/ninja_run1_SUP.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Ninja/ninja_run2_SUP.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Ninja/ninja_run3_SUP.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Ninja/ninja_run4_SUP.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Ninja/ninja_cortar1_SUP.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Ninja/ninja_cortar2_SUP.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Ninja/ninja_hold_SUP.png" type="Texture" id=10]
@@ -16,24 +16,24 @@
 [ext_resource path="res://Sprites/Ninja/ninja_jump3.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Ninja/ninja_jump4.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/Ninja/ninja_jump1.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Ninja/ninja_run1_INF.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/Ninja/ninja_run4_INF.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Ninja/ninja_run2_INF.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Ninja/ninja_run3_INF.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/Ninja/ninja_stand1_INF.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Ninja/ninja_stand1_INF.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Ninja/ninja_run1_INF.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Ninja/ninja_run4_INF.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Ninja/ninja_run2_INF.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Ninja/ninja_run3_INF.png" type="Texture" id=21]
 [ext_resource path="res://Sprites/Ninja/ninja_hold_INF.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/Ninja/ninja_fall_INF.png" type="Texture" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
@@ -59,14 +59,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "Run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -88,9 +88,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 11.1131, 29.2336 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 13.486, 29.4336 )
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -107,21 +104,12 @@ playing = true
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "Run"
-frame = 2
 speed_scale = 2.0
 playing = true
 
 [node name="ColisionInferior" type="CollisionShape2D" parent="."]
 position = Vector2( -1.17966, 1.0275 )
 shape = SubResource( 3 )
-
-[node name="CollisionEnemy" type="Area2D" parent="."]
-position = Vector2( -3.05176e-05, 0 )
-space_override = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionEnemy"]
-position = Vector2( -1.16259, 1.16259 )
-shape = SubResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
