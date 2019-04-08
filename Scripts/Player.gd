@@ -6,14 +6,20 @@ var move_x = 0
 var move_y = 0
 
 export var tope = 700
+export var coldownDamage = 0.65
 var subida = 0
 
 var jump = false
 var saltando = false
 var controlEnSalto = 1
+var move = 1
+var damage = false
 var correr = 1
 var dificultadsalto = 1
 const corrida = 2.25
+
+var timerDamage
+var grabTimer = 0
 
 var colisionador
 
@@ -28,11 +34,20 @@ var canAttack = true
 var attack = false
 var sprite_previo = ""
 var attackTimer = 12
-var grabTimer = 0
+
+var empuje = 0
+
+
+func _ready():
+	timerDamage = Timer.new()
+	add_child(timerDamage)
+	timerDamage.set_one_shot(true)
+	timerDamage.set_wait_time(coldownDamage)
+	timerDamage.connect("timeout",self,"stopDamage")
 
 func _physics_process(delta):
 	
-	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 225 * correr * dificultadsalto 
+	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 225 * correr * dificultadsalto * move + empuje
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
@@ -49,6 +64,7 @@ func _physics_process(delta):
 	
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
+	print ("move_x" + str(move_x) + " subida " + str(subida)  + " damage " + str(damage))
 		
 	if is_on_floor():
 		dirSalto = 0
@@ -118,7 +134,7 @@ func _physics_process(delta):
 		$SpriteUp.speed_scale = 2.12
 		$SpriteDown.speed_scale = 2.64
 		
-	if Input.is_action_just_pressed("ui_attack"):
+	if Input.is_action_just_pressed("ui_attack") and move != 0:
 		if(canAttack == true):
 			canAttack = false
 			sprite_previo = $SpriteUp.animation
@@ -141,7 +157,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and jump:
 		saltando = true
 	
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept") and move != 0 :
 		jump = false
 		
 		if grab == true:
@@ -165,7 +181,7 @@ func _physics_process(delta):
 				dirSalto = dir
 
 		
-	elif Input.is_action_just_released("ui_accept") and saltando:
+	elif Input.is_action_just_released("ui_accept") and saltando and damage == false:
 		saltando = false
 		dirSalto = dir
 	
@@ -196,9 +212,12 @@ func _physics_process(delta):
 	if get_slide_count( )>0:
 		for i in range(get_slide_count()):
 			var col = get_slide_collision(i)
-			if col.collider.is_in_group("Enemys"):
+			if col.collider.is_in_group("Enemys") and damage == false:
 				print ("Toque un enemigo")
 				jump = true
+				saltando = true
+				timerDamage.start()
+				damage = true
 				
 
 	
@@ -206,3 +225,15 @@ func _physics_process(delta):
 		saltando = false
 		subida = 0
 		
+	
+	if damage:
+		subida += 12
+		empuje = -400
+		move = 0
+		
+func stopDamage():
+	empuje = 0
+	move = 1
+	damage = false
+	saltando = false
+	print("termino el daño")
