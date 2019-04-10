@@ -6,7 +6,8 @@ var move_x = 0
 var move_y = 0
 
 export var tope = 700
-export var coldownDamage = 0.65
+export var coldownDamage = 0.45
+export var coldownGrab = 0.12
 var subida = 0
 
 var jump = false
@@ -19,7 +20,7 @@ var dificultadsalto = 1
 const corrida = 2.25
 
 var timerDamage
-var grabTimer = 0
+var timerGrab = 0
 
 var colisionador
 
@@ -36,6 +37,7 @@ var sprite_previo = ""
 var attackTimer = 12
 
 var empuje = 0
+var empujeconst = 245
 
 
 func _ready():
@@ -44,6 +46,12 @@ func _ready():
 	timerDamage.set_one_shot(true)
 	timerDamage.set_wait_time(coldownDamage)
 	timerDamage.connect("timeout",self,"stopDamage")
+	
+	timerGrab = Timer.new()
+	add_child(timerGrab)
+	timerGrab.set_one_shot(true)
+	timerGrab.set_wait_time(coldownGrab)
+	timerGrab.connect("timeout",self,"canGrabAgain")
 
 func _physics_process(delta):
 	
@@ -52,21 +60,22 @@ func _physics_process(delta):
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
 	
-	if Input.is_action_pressed("ui_right") and grab == false:
+	if Input.is_action_pressed("ui_right") and grab == false and damage == false:
 		dir = 1
 		$SpriteUp.flip_h = false
 		$SpriteDown.flip_h = false
 		
-	if Input.is_action_pressed("ui_left") and grab == false :
+	if Input.is_action_pressed("ui_left") and grab == false and damage == false:
 		dir = -1
 		$SpriteUp.flip_h = true
 		$SpriteDown.flip_h = true
 	
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
-	print ("move_x" + str(move_x) + " subida " + str(subida)  + " damage " + str(damage))
+	print ("move_x: " + str(move_x) + " subida: " + str(subida)  + " damage: " + str(damage) + " canGrab: " + str(canGrab) )
 		
 	if is_on_floor():
+		empuje = 0
 		dirSalto = 0
 		dificultadsalto = 1
 		gravity = 0
@@ -95,10 +104,10 @@ func _physics_process(delta):
 	
 	##Agarre##
 	
-	if is_on_wall() and not is_on_floor() and not is_on_ceiling():
+	if is_on_wall() and not is_on_floor() and not is_on_ceiling() and not damage:
 		if canGrab and grab == false:
 			canGrab = false
-			grabTimer = 25
+			timerGrab.start()
 			#print ("es un escalable")
 			grab = true
 			match dir:
@@ -113,12 +122,6 @@ func _physics_process(delta):
 	else:
 		grab = false
 		
-	
-	if grabTimer > 0:
-		grabTimer -= 100 * delta
-	else:
-		grabTimer = 0
-		canGrab = true
 
 	if grab:
 		jump = true
@@ -164,9 +167,11 @@ func _physics_process(delta):
 			dificultadsalto = 0.25
 			match dir:
 				1:
-					move_x += 615
+					empuje += 64
 				-1:
-					move_x -= 615
+					empuje -= 64
+		else:
+			empuje = 0
 		
 		if saltando:
 			if subida < tope*0.95:
@@ -218,6 +223,12 @@ func _physics_process(delta):
 				saltando = true
 				timerDamage.start()
 				damage = true
+				match dir:
+					1: 
+						empujeconst = -12
+					-1:
+						empujeconst =  12
+					
 				
 
 	
@@ -227,13 +238,21 @@ func _physics_process(delta):
 		
 	
 	if damage:
-		subida += 12
-		empuje = -400
+		subida += 6
+		empuje += empujeconst
 		move = 0
+		$SpriteUp.animation = "Damage"
+		$SpriteDown.animation = "Damage"
+		canGrab = false
 		
 func stopDamage():
 	empuje = 0
 	move = 1
 	damage = false
 	saltando = false
+	jump = false
+	timerGrab.start()
 	print("termino el daño")
+	
+func canGrabAgain():
+	canGrab = true
