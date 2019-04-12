@@ -72,7 +72,7 @@ func _physics_process(delta):
 	
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
-	print ("move_x: " + str(move_x) + " subida: " + str(subida)  + " damage: " + str(damage) + " canGrab: " + str(canGrab) )
+	#print ("move_x: " + str(move_x) + " subida: " + str(subida)  + " damage: " + str(damage) + " canGrab: " + str(canGrab) )
 		
 	if is_on_floor():
 		empuje = 0

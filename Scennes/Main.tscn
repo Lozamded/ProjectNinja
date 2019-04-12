@@ -232,6 +232,21 @@ position = Vector2( 2404.39, 319.77 )
 ] instance=ExtResource( 1 )]
 position = Vector2( 1732.61, 319.77 )
 
+[node name="EnermyTest4" parent="." groups=[
+"Enemys",
+] instance=ExtResource( 1 )]
+position = Vector2( 227.351, 81.7721 )
+
+[node name="EnermyTest5" parent="." groups=[
+"Enemys",
+] instance=ExtResource( 1 )]
+position = Vector2( 718.801, 57.0451 )
+
+[node name="EnermyTest6" parent="." groups=[
+"Enemys",
+] instance=ExtResource( 1 )]
+position = Vector2( 511.712, 72.4995 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true
 position = Vector2( 405.099, 271.536 )
