@@ -219,15 +219,8 @@ func _physics_process(delta):
 			var col = get_slide_collision(i)
 			if col.collider.is_in_group("Enemys") and damage == false:
 				print ("Toque un enemigo")
-				jump = true
-				saltando = true
-				timerDamage.start()
-				damage = true
-				match dir:
-					1: 
-						empujeconst = -12
-					-1:
-						empujeconst =  12
+				setDamage(-dir)
+
 					
 				
 
@@ -244,6 +237,17 @@ func _physics_process(delta):
 		$SpriteUp.animation = "Damage"
 		$SpriteDown.animation = "Damage"
 		canGrab = false
+
+func setDamage(punchDir):
+	jump = true
+	saltando = true
+	timerDamage.start()
+	damage = true
+	match punchDir:
+		1: 
+			empujeconst = 12
+		-1:
+			empujeconst =  -12
 		
 func stopDamage():
 	empuje = 0

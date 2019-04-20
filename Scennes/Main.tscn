@@ -15,6 +15,8 @@ extents = Vector2( 31.967, 9.69293 )
 editor/display_folded = true
 position = Vector2( 520, 536 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -35,6 +37,8 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( -81.8506, 385.851 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -51,12 +55,16 @@ position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Floor3" type="StaticBody2D" parent="."]
+[node name="Floor3" type="StaticBody2D" parent="." groups=[
+"Walls",
+]]
 editor/display_folded = true
 position = Vector2( 1012.94, 253.883 )
 rotation = -1.56633
 scale = Vector2( 8.35017, 0.45163 )
 z_index = 1
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -78,6 +86,8 @@ editor/display_folded = true
 position = Vector2( 177.775, 634.958 )
 rotation = -3.54262
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -98,6 +108,8 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( -215.429, 241.48 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -119,6 +131,8 @@ editor/display_folded = true
 position = Vector2( 1020.89, 738.092 )
 rotation = -2.49932
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -139,6 +153,8 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( 1174.79, 174.066 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -159,6 +175,8 @@ one_way_collision = true
 editor/display_folded = true
 position = Vector2( 2107.59, 367.616 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -179,6 +197,8 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( 2557.23, 200.199 )
 scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -195,12 +215,16 @@ position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Floor10" type="StaticBody2D" parent="."]
+[node name="Floor10" type="StaticBody2D" parent="." groups=[
+"Walls",
+]]
 editor/display_folded = true
 position = Vector2( 1618.09, 383.426 )
 rotation = -1.56633
 scale = Vector2( 8.35017, 0.45163 )
 z_index = 1
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -220,7 +244,7 @@ shape = SubResource( 1 )
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 1405.82, 126.045 )
+position = Vector2( 1423.09, 76.4 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
@@ -245,9 +269,16 @@ position = Vector2( 718.801, 57.0451 )
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 511.712, 72.4995 )
+position = Vector2( 2370.16, 40.1223 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="EnermyTest7" parent="." groups=[
+"Enemys",
+] instance=ExtResource( 1 )]
+position = Vector2( 1241.28, 48.7563 )
+
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 2 )]
 editor/display_folded = true
 position = Vector2( 405.099, 271.536 )
 
