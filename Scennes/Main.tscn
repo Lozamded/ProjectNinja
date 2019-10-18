@@ -12,7 +12,6 @@ extents = Vector2( 31.967, 9.69293 )
 [node name="Main" type="Node"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 520, 536 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -29,13 +28,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor"]
-position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor2" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( -81.8506, 385.851 )
+position = Vector2( 2811.46, 391.349 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -51,39 +48,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor2"]
-position = Vector2( -1.90735e-006, 0 )
-scale = Vector2( 2.46154, 1 )
-shape = SubResource( 1 )
-
-[node name="Floor3" type="StaticBody2D" parent="." groups=[
-"Walls",
-]]
-editor/display_folded = true
-position = Vector2( 1012.94, 253.883 )
-rotation = -1.56633
-scale = Vector2( 8.35017, 0.45163 )
-z_index = 1
-collision_layer = 3
-collision_mask = 3
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Color" type="ColorRect" parent="Floor3"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 32.0
-margin_bottom = 32.0
-color = Color( 0.017395, 0.296875, 0.0414128, 1 )
-
-[node name="Collision" type="CollisionShape2D" parent="Floor3"]
-position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 177.775, 634.958 )
+position = Vector2( 657.651, 593.027 )
 rotation = -3.54262
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -100,13 +69,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor4"]
-position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor5" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( -215.429, 241.48 )
+position = Vector2( 4109.58, 397.159 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -126,32 +93,8 @@ position = Vector2( 0, -22.4561 )
 shape = SubResource( 2 )
 one_way_collision = true
 
-[node name="Floor6" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 1020.89, 738.092 )
-rotation = -2.49932
-scale = Vector2( 15.75, 0.75 )
-collision_layer = 3
-collision_mask = 3
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Color" type="ColorRect" parent="Floor6"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 32.0
-margin_bottom = 32.0
-color = Color( 0.017395, 0.296875, 0.0414128, 1 )
-
-[node name="Collision" type="CollisionShape2D" parent="Floor6"]
-position = Vector2( -1.90735e-006, 0 )
-scale = Vector2( 2.46154, 1 )
-shape = SubResource( 1 )
-
 [node name="Floor7" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 1174.79, 174.066 )
+position = Vector2( 3570.91, 266.314 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -172,8 +115,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor8" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 2107.59, 367.616 )
+position = Vector2( 1529.88, 530.681 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -189,13 +131,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor8"]
-position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor9" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 2557.23, 200.199 )
+position = Vector2( 1606.8, 391.218 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -211,18 +151,12 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor9"]
-position = Vector2( -1.90735e-006, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Floor10" type="StaticBody2D" parent="." groups=[
-"Walls",
-]]
-editor/display_folded = true
-position = Vector2( 1618.09, 383.426 )
-rotation = -1.56633
-scale = Vector2( 8.35017, 0.45163 )
-z_index = 1
+[node name="Floor10" type="StaticBody2D" parent="."]
+position = Vector2( 5086.34, 397.556 )
+scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -237,52 +171,81 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor10"]
-position = Vector2( -1.90735e-006, 0 )
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor11" type="StaticBody2D" parent="."]
+position = Vector2( 4845.5, 777.834 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor11"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor11"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor12" type="StaticBody2D" parent="."]
+position = Vector2( 5168.73, 600.371 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor12"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor12"]
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 1423.09, 76.4 )
+position = Vector2( 4504.8, 351.94 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 2404.39, 319.77 )
+position = Vector2( 2946.17, 339.196 )
 
 [node name="EnermyTest3" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 1732.61, 319.77 )
-
-[node name="EnermyTest4" parent="." groups=[
-"Enemys",
-] instance=ExtResource( 1 )]
-position = Vector2( 227.351, 81.7721 )
-
-[node name="EnermyTest5" parent="." groups=[
-"Enemys",
-] instance=ExtResource( 1 )]
-position = Vector2( 718.801, 57.0451 )
+position = Vector2( 1734.77, 337.038 )
 
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 2370.16, 40.1223 )
+position = Vector2( 3706.25, 223.592 )
 
 [node name="EnermyTest7" parent="." groups=[
 "Enemys",
 ] instance=ExtResource( 1 )]
-position = Vector2( 1241.28, 48.7563 )
+position = Vector2( 926.144, 411.379 )
 
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 2 )]
-editor/display_folded = true
 position = Vector2( 405.099, 271.536 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -3.2998, 3.505 )
 current = true
-
