@@ -46,15 +46,18 @@ margin_top = -32.0
 margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Collision" type="CollisionShape2D" parent="Floor2"]
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-position = Vector2( 657.651, 593.027 )
+position = Vector2( 633.441, 602.285 )
 rotation = -3.54262
-scale = Vector2( 15.75, 0.75 )
+scale = Vector2( 16.3371, 0.993116 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -93,6 +96,48 @@ position = Vector2( 0, -22.4561 )
 shape = SubResource( 2 )
 one_way_collision = true
 
+[node name="Floor15" type="StaticBody2D" parent="."]
+position = Vector2( 7501.53, 467.386 )
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor15"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor15"]
+position = Vector2( 0, -22.4561 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Floor6" type="StaticBody2D" parent="."]
+position = Vector2( 6925.5, 1216.05 )
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor6"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor6"]
+position = Vector2( 0, -22.4561 )
+shape = SubResource( 2 )
+one_way_collision = true
+
 [node name="Floor7" type="StaticBody2D" parent="."]
 position = Vector2( 3570.91, 266.314 )
 scale = Vector2( 15.75, 0.75 )
@@ -108,6 +153,9 @@ margin_top = -32.0
 margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor7"]
 position = Vector2( 0, -22.4561 )
@@ -169,8 +217,57 @@ margin_top = -32.0
 margin_right = 32.0
 margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Collision" type="CollisionShape2D" parent="Floor10"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor13" type="StaticBody2D" parent="."]
+position = Vector2( 5828.47, 240.757 )
+scale = Vector2( 20.5207, 0.979454 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor13"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Collision" type="CollisionShape2D" parent="Floor13"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor19" type="StaticBody2D" parent="."]
+position = Vector2( 9557.51, 353.12 )
+scale = Vector2( 20.5207, 0.979454 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor19"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Collision" type="CollisionShape2D" parent="Floor19"]
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -195,8 +292,71 @@ color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
+[node name="Floor16" type="StaticBody2D" parent="."]
+position = Vector2( 7429.84, 960.424 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor16"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor16"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor17" type="StaticBody2D" parent="."]
+position = Vector2( 8314.7, 819.97 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor17"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor17"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor18" type="StaticBody2D" parent="."]
+position = Vector2( 8651.79, 595.244 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor18"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor18"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
 [node name="Floor12" type="StaticBody2D" parent="."]
-position = Vector2( 5168.73, 600.371 )
+position = Vector2( 5168.73, 607.042 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -213,6 +373,27 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor12"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor14" type="StaticBody2D" parent="."]
+position = Vector2( 5168.73, 607.042 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor14"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor14"]
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 

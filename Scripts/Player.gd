@@ -37,7 +37,7 @@ var sprite_previo = ""
 var attackTimer = 12
 
 var empuje = 0
-var empujeconst = 245
+var empujeconst = 265
 
 
 func _ready():
@@ -55,26 +55,20 @@ func _ready():
 
 func _physics_process(delta):
 	
-	move_x = ( int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")) ) * 225 * correr * dificultadsalto * move + empuje
+	move_x = 265 * correr * dificultadsalto * move + empuje
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
 	
-	if Input.is_action_pressed("ui_right") and grab == false and damage == false:
-		dir = 1
-		$SpriteUp.flip_h = false
-		$SpriteDown.flip_h = false
-		
-	if Input.is_action_pressed("ui_left") and grab == false and damage == false:
-		dir = -1
-		$SpriteUp.flip_h = true
-		$SpriteDown.flip_h = true
 	
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
 	#print ("move_x: " + str(move_x) + " subida: " + str(subida)  + " damage: " + str(damage) + " canGrab: " + str(canGrab) )
 		
 	if is_on_floor():
+		dir = 1
+		$SpriteUp.flip_h = false
+		$SpriteDown.flip_h = false
 		empuje = 0
 		dirSalto = 0
 		dificultadsalto = 1
@@ -167,9 +161,9 @@ func _physics_process(delta):
 			dificultadsalto = 0.25
 			match dir:
 				1:
-					empuje += 64
+					empuje += 81
 				-1:
-					empuje -= 64
+					empuje -= 91
 		else:
 			empuje = 0
 		
