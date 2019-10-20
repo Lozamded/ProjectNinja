@@ -66,7 +66,7 @@ func _physics_process(delta):
 						move_x += 425
 						wallDetector = 1
 			if col.collider.is_in_group("Player"):
-				print("Toque al playaar ")
+				#print("Toque al playaar ")
 				player.setDamage(dir)
 				
 			if col.collider.is_in_group("Enemys"):

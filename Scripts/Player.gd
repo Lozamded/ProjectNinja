@@ -40,6 +40,14 @@ var empuje = 0
 var empujeconst = 265
 
 
+var canDash = true
+var timerDash
+export var dashTime = 1.25
+var dash = false
+var dashValue = 1;
+var dashconst = 4.25
+
+
 func _ready():
 	timerDamage = Timer.new()
 	add_child(timerDamage)
@@ -52,10 +60,16 @@ func _ready():
 	timerGrab.set_one_shot(true)
 	timerGrab.set_wait_time(coldownGrab)
 	timerGrab.connect("timeout",self,"canGrabAgain")
+	
+	timerDash = Timer.new()
+	add_child(timerDash)
+	timerDash.set_one_shot(true)
+	timerDash.set_wait_time(dashTime)
+	timerDash.connect("timeout",self,"canDashAgain")
 
 func _physics_process(delta):
 	
-	move_x = 265 * correr * dificultadsalto * move + empuje
+	move_x = 265 * dashValue * dificultadsalto * move + empuje
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
@@ -78,14 +92,14 @@ func _physics_process(delta):
 		controlEnSalto = 1
 		$ColorRect.color = Color8(0,255,0,255)
 		#Sprites
-		if(move_x == 0):
-			if(attack == false):
-				$SpriteUp.animation = "Idle"
-			$SpriteDown.animation = "Idle"
-		elif saltando == false:
-			if(attack == false):
-				$SpriteUp.animation = "Run"
+		if dash:
+			$SpriteUp.animation = "Fall"
+			$SpriteDown.animation = "Fall"
+
+		if dash == false : 
+			$SpriteUp.animation = "Run"
 			$SpriteDown.animation = "Run"
+
 			
 	else:
 		$ColorRect.color = Color8(255,0,0,255)
@@ -96,40 +110,20 @@ func _physics_process(delta):
 				dificultadsalto = 1
 				
 	
-	##Agarre##
-	
-	if is_on_wall() and not is_on_floor() and not is_on_ceiling() and not damage:
-		if canGrab and grab == false:
-			canGrab = false
-			timerGrab.start()
-			#print ("es un escalable")
-			grab = true
-			match dir:
-				-1:
-					$SpriteUp.flip_h = false
-					$SpriteDown.flip_h = false
-					dir = 1
-				1:
-					$SpriteUp.flip_h = true
-					$SpriteDown.flip_h = true
-					dir = -1
-	else:
-		grab = false
+	if Input.is_action_pressed("ui_run") and is_on_floor() and canDash:
+		print ("dash...")
+		timerDash.start()
+		dash = true
+		canDash = false
 		
-
-	if grab:
-		jump = true
-		
-	##----##
-	
-	if Input.is_action_pressed("ui_run"):
-		correr = corrida
-		$SpriteUp.speed_scale = 2.65
-		$SpriteDown.speed_scale = 2.65
+	if dash:
+		dashValue = dashconst
+		$SpriteUp.rotation_degrees = -90
+		$SpriteDown.rotation_degrees = -90
 	else:
-		correr = 1
-		$SpriteUp.speed_scale = 2.12
-		$SpriteDown.speed_scale = 2.64
+		dashValue = 1
+		$SpriteUp.rotation_degrees = 0
+		$SpriteDown.rotation_degrees = 0
 		
 	if Input.is_action_just_pressed("ui_attack") and move != 0:
 		if(canAttack == true):
@@ -151,7 +145,7 @@ func _physics_process(delta):
 		
 #Saltos
 	
-	if Input.is_action_just_pressed("ui_accept") and jump:
+	if Input.is_action_just_pressed("ui_accept") and jump and dash ==false: 
 		saltando = true
 	
 	if Input.is_action_pressed("ui_accept") and move != 0 :
@@ -215,9 +209,6 @@ func _physics_process(delta):
 				print ("Toque un enemigo")
 				setDamage(-dir)
 
-					
-				
-
 	
 	if is_on_ceiling():
 		saltando = false
@@ -225,7 +216,7 @@ func _physics_process(delta):
 		
 	
 	if damage:
-		subida += 6
+		subida += 4
 		empuje += empujeconst
 		move = 0
 		$SpriteUp.animation = "Damage"
@@ -254,3 +245,9 @@ func stopDamage():
 	
 func canGrabAgain():
 	canGrab = true
+	
+func canDashAgain():
+	print ("STOP dash")
+	subida += 4
+	dash = false
+	canDash = true

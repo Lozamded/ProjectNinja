@@ -32,7 +32,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor2" type="StaticBody2D" parent="."]
-position = Vector2( 2811.46, 391.349 )
+position = Vector2( 2753.92, 391.349 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -97,7 +97,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor15" type="StaticBody2D" parent="."]
-position = Vector2( 7501.53, 467.386 )
+position = Vector2( 7163.16, 652.838 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -118,7 +118,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor6" type="StaticBody2D" parent="."]
-position = Vector2( 6925.5, 1216.05 )
+position = Vector2( 9385.11, 478.168 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -134,6 +134,27 @@ margin_bottom = 32.0
 color = Color( 0.0156863, 0.223529, 0.298039, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor6"]
+position = Vector2( 0, -22.4561 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Floor20" type="StaticBody2D" parent="."]
+position = Vector2( 9625.35, 375.207 )
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor20"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.0156863, 0.223529, 0.298039, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor20"]
 position = Vector2( 0, -22.4561 )
 shape = SubResource( 2 )
 one_way_collision = true
@@ -203,7 +224,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor10" type="StaticBody2D" parent="."]
-position = Vector2( 5086.34, 397.556 )
+position = Vector2( 5118.88, 342.246 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -226,7 +247,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor13" type="StaticBody2D" parent="."]
-position = Vector2( 5828.47, 240.757 )
+position = Vector2( 6049.71, 523.816 )
 scale = Vector2( 20.5207, 0.979454 )
 collision_layer = 3
 collision_mask = 3
@@ -249,7 +270,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor19" type="StaticBody2D" parent="."]
-position = Vector2( 9557.51, 353.12 )
+position = Vector2( 8379.19, 610.521 )
 scale = Vector2( 20.5207, 0.979454 )
 collision_layer = 3
 collision_mask = 3
@@ -293,7 +314,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor16" type="StaticBody2D" parent="."]
-position = Vector2( 7429.84, 960.424 )
+position = Vector2( 7143.53, 1015.73 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -314,7 +335,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor17" type="StaticBody2D" parent="."]
-position = Vector2( 8314.7, 819.97 )
+position = Vector2( 7663.99, 1132.31 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -335,7 +356,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor18" type="StaticBody2D" parent="."]
-position = Vector2( 8651.79, 595.244 )
+position = Vector2( 7707.99, 1075.73 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -356,7 +377,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor12" type="StaticBody2D" parent="."]
-position = Vector2( 5168.73, 607.042 )
+position = Vector2( 5022.32, 746.944 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -377,7 +398,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor14" type="StaticBody2D" parent="."]
-position = Vector2( 5168.73, 607.042 )
+position = Vector2( 4888.92, 753.452 )
 rotation = 1.5708
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -426,6 +447,7 @@ position = Vector2( 926.144, 411.379 )
 "Player",
 ] instance=ExtResource( 2 )]
 position = Vector2( 405.099, 271.536 )
+dashTime = 0.24
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -3.2998, 3.505 )
