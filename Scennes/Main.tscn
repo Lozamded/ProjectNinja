@@ -55,7 +55,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-position = Vector2( 633.441, 602.285 )
+position = Vector2( 633.679, 600.382 )
 rotation = -3.54262
 scale = Vector2( 16.3371, 0.993116 )
 collision_layer = 3

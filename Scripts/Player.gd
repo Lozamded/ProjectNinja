@@ -206,7 +206,7 @@ func _physics_process(delta):
 		for i in range(get_slide_count()):
 			var col = get_slide_collision(i)
 			if col.collider.is_in_group("Enemys") and damage == false:
-				print ("Toque un enemigo")
+				#print ("Toque un enemigo")
 				setDamage(-dir)
 
 	
