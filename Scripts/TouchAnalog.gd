@@ -23,12 +23,9 @@ func _draw():
 	# This code will only run in the editor!
 	if (Engine.editor_hint == true):
 		
-		# Draw the rectanlge in global space
 		var draw_screen_rect = screen_rectangle;
 		draw_screen_rect.position -= rect_global_position;
 		
-		# Draw the four lines that make up the rectangle.
-		# We use draw_line instead of draw_rect because we want to have a pixel width of more than 1px.
 		draw_line(draw_screen_rect.position, draw_screen_rect.position + Vector2(0, draw_screen_rect.size.y), editor_color, 4);
 		draw_line(draw_screen_rect.position + Vector2(0, draw_screen_rect.size.y), draw_screen_rect.position + Vector2(draw_screen_rect.size.x, draw_screen_rect.size.y), editor_color, 4);
 		draw_line(draw_screen_rect.position, draw_screen_rect.position + Vector2(draw_screen_rect.size.x, 0), editor_color, 4);
@@ -42,6 +39,8 @@ func _ready():
 	joystick_ring = get_node("BolaAnalogo");
 	joystick_ring.rect_global_position = get_center_of_joystick() + rect_global_position - (joystick_ring.rect_size/2);
 	joystick_vector = Vector2(0, 0);
+	
+	visible = false
 	
 	if use_all_screen:
 		screen_rectangle = Rect2(0,0,1280,720)
@@ -101,9 +100,9 @@ func _input(event):
 						
 						# Set the joystick as active, and make it visible.
 						joystick_active = true;
-						visible = true;
+						#visible = true;
 						
-						# Place the joystick ring in the center, since the joystick has just become active.
+						# dejar bola del analogo en el centro
 						joystick_ring.rect_global_position = get_center_of_joystick() + rect_global_position - (joystick_ring.rect_size/2);
 						
 						# Reset the joystick vector (since the joystick ring is in the center)
@@ -111,6 +110,7 @@ func _input(event):
 						
 						# Now the joystick has just been activated, emit Joystick_Start.
 						emit_signal("Joystick_Start");
+						print ("Inicio el joitck");
 				
 				
 				# Otherwise, we just need to check if the event is within the radius of the joystick
@@ -181,6 +181,7 @@ func _input(event):
 					
 					# Emit the Joystick_End signal because the joystick is now inactive.
 					emit_signal("Joystick_End");
+					print ("Solte el joystick")
 		
 	
 	# If the event is a motion event... (mouse/finger is moving on/across the screen)
@@ -201,6 +202,8 @@ func _input(event):
 			elif event is InputEventMouseMotion:
 				event_ID = null;
 				event_position = get_global_mouse_position();
+
+			#print (event_position);
 			
 			# If this event is this joystick's event.
 			if (event_ID == joystick_touch_id):
@@ -212,7 +215,6 @@ func _input(event):
 					joystick_ring.rect_global_position = event_position - (joystick_ring.rect_size/2);
 					
 					joystick_vector = ((get_center_of_joystick() + rect_global_position) - event_position) / radius;
-					
 					emit_signal("Joystick_Updated");
 				
 				# If the event position is NOT within the joystick radius, we need to calculate the values
@@ -229,4 +231,6 @@ func _input(event):
 					joystick_ring.rect_global_position -= joystick_vector * radius;
 					
 					emit_signal("Joystick_Updated");
+					
+				print (joystick_vector);
 	

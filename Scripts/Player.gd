@@ -44,11 +44,16 @@ var canDash = true
 var timerDash
 export var dashTime = 1.25
 var dash = false
-var dashValue = 1;
+var dashValue = 1
 var dashconst = 4.25
+
+export (NodePath) var analogoPath;
+var analogo
 
 
 func _ready():
+	analogo = get_node(analogoPath);
+	
 	timerDamage = Timer.new()
 	add_child(timerDamage)
 	timerDamage.set_one_shot(true)
@@ -110,7 +115,7 @@ func _physics_process(delta):
 				dificultadsalto = 1
 				
 	
-	if Input.is_action_pressed("ui_run") and is_on_floor() and canDash:
+	if (Input.is_action_pressed("ui_run")  or analogo.joystick_vector.x < -0.35 ) and is_on_floor() and canDash:
 		print ("dash...")
 		timerDash.start()
 		dash = true
@@ -145,10 +150,10 @@ func _physics_process(delta):
 		
 #Saltos
 	
-	if Input.is_action_just_pressed("ui_accept") and jump and dash ==false: 
+	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.25 ) ) and jump and dash ==false: 
 		saltando = true
 	
-	if Input.is_action_pressed("ui_accept") and move != 0 :
+	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.25 ) ) and move != 0 :
 		jump = false
 		
 		if grab == true:
@@ -174,7 +179,7 @@ func _physics_process(delta):
 				dirSalto = dir
 
 		
-	elif Input.is_action_just_released("ui_accept") and saltando and damage == false:
+	elif (Input.is_action_just_released("ui_accept") or analogo.joystick_active == false) and saltando and damage == false:
 		saltando = false
 		dirSalto = dir
 	
