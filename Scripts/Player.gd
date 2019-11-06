@@ -47,12 +47,15 @@ var dash = false
 var dashValue = 1
 var dashconst = 4.25
 
-export (NodePath) var analogoPath;
-var analogo
+export (NodePath) var analogoPath
+export (NodePath) var fallcheckerPath
 
+var analogo
+var fallchecker
 
 func _ready():
-	analogo = get_node(analogoPath);
+	analogo = get_node(analogoPath)
+	fallchecker = get_node(fallcheckerPath)
 	
 	timerDamage = Timer.new()
 	add_child(timerDamage)
@@ -227,6 +230,11 @@ func _physics_process(delta):
 		$SpriteUp.animation = "Damage"
 		$SpriteDown.animation = "Damage"
 		canGrab = false
+		
+	if position.y > fallchecker.position.y:
+		print ("I'm dead")
+		get_tree().reload_current_scene()
+		
 
 func setDamage(punchDir):
 	jump = true
