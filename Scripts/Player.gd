@@ -57,6 +57,9 @@ func _ready():
 	analogo = get_node(analogoPath)
 	fallchecker = get_node(fallcheckerPath)
 	
+	$SpriteUp.modulate.a = 0
+	$SpriteDown.modulate.a = 0
+	
 	timerDamage = Timer.new()
 	add_child(timerDamage)
 	timerDamage.set_one_shot(true)

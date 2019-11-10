@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UFO/ufo.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/NanoBuddy180.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/NanoBuddy225.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/TouchAnalog.gd" type="Script" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/BolaAnalogo.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Backgrounds/Chemistry-S.jpg" type="Texture" id=8]
 [ext_resource path="res://Scripts/CameraObj.gd" type="Script" id=9]
-[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 32 )
@@ -19,9 +20,21 @@ extents = Vector2( 31.967, 9.69293 )
 
 [node name="Main" type="Node"]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -50, 0 )
+motion_scale = Vector2( 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -659.317, 6.70807 )
+scale = Vector2( 1.43907, 1.604 )
+texture = ExtResource( 8 )
+centered = false
+
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 520, 536 )
-scale = Vector2( 15.75, 0.75 )
+scale = Vector2( 29.11, 0.75 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -63,7 +76,7 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-position = Vector2( 633.679, 600.382 )
+position = Vector2( 965.993, 600.382 )
 rotation = -3.54262
 scale = Vector2( 16.3371, 0.993116 )
 collision_layer = 3
@@ -215,8 +228,8 @@ scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor9" type="StaticBody2D" parent="."]
-position = Vector2( 1606.8, 391.218 )
-scale = Vector2( 15.75, 0.75 )
+position = Vector2( 1788.34, 427.162 )
+scale = Vector2( 11.0354, -1.88074 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -431,39 +444,39 @@ shape = SubResource( 1 )
 
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 8 )]
+] instance=ExtResource( 10 )]
 position = Vector2( 4504.8, 351.94 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 8 )]
+] instance=ExtResource( 10 )]
 position = Vector2( 2946.17, 339.196 )
 
 [node name="EnermyTest3" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 8 )]
+] instance=ExtResource( 10 )]
 position = Vector2( 1734.77, 337.038 )
 
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 8 )]
+] instance=ExtResource( 10 )]
 position = Vector2( 3706.25, 223.592 )
 
 [node name="EnermyTest7" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 8 )]
+] instance=ExtResource( 10 )]
 position = Vector2( 926.144, 411.379 )
 
 [node name="Player" parent="." groups=[
 "Player",
-] instance=ExtResource( 10 )]
-position = Vector2( 640.127, 360.366 )
+] instance=ExtResource( 11 )]
+position = Vector2( 103.893, 375.471 )
 dashTime = 0.24
 analogoPath = NodePath("../UI/BaseAnalogo")
 fallcheckerPath = NodePath("../DeathfallChecket")
 
 [node name="Sprite2" type="Sprite" parent="Player"]
-position = Vector2( 13.3268, -56.7478 )
+position = Vector2( 18.59, -77.8004 )
 z_index = 5
 z_as_relative = false
 texture = ExtResource( 3 )
