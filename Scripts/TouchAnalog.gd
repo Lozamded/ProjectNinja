@@ -40,7 +40,7 @@ func _ready():
 	joystick_ring.rect_global_position = get_center_of_joystick() + rect_global_position - (joystick_ring.rect_size/2);
 	joystick_vector = Vector2(0, 0);
 	
-	visible = false
+	#visible = false
 	
 	if use_all_screen:
 		screen_rectangle = Rect2(0,0,1280,720)
@@ -100,7 +100,7 @@ func _input(event):
 						
 						# Set the joystick as active, and make it visible.
 						joystick_active = true;
-						#visible = true;
+						visible = true;
 						
 						# dejar bola del analogo en el centro
 						joystick_ring.rect_global_position = get_center_of_joystick() + rect_global_position - (joystick_ring.rect_size/2);

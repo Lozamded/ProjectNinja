@@ -1,121 +1,33 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Ninja/ninja_stand1_SUP.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Ninja/ninja_stand2_SUP.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Ninja/ninja_run1_SUP.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Ninja/ninja_run2_SUP.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Ninja/ninja_run3_SUP.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Ninja/ninja_run4_SUP.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Ninja/ninja_jump5.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Ninja/ninja_jump2.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Ninja/ninja_jump3.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Ninja/ninja_jump4.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Ninja/ninja_jump1.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Ninja/ninja_cortar1_SUP.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Ninja/ninja_cortar2_SUP.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Ninja/ninja_hold_SUP.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/Ninja/ninja_fall_SUP.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Ninja/ninja_stand1_INF.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/Ninja/ninja_run1_INF.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Ninja/ninja_run4_INF.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Ninja/ninja_run2_INF.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/Ninja/ninja_run3_INF.png" type="Texture" id=21]
-[ext_resource path="res://Sprites/Ninja/ninja_hold_INF.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Ninja/ninja_fall_INF.png" type="Texture" id=23]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "Damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
-"loop": true,
-"name": "Slash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "Hold",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "Damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "Hold",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-} ]
+[ext_resource path="res://Scennes/alpaca-animacion.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 11.1131, 29.2336 )
 
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "down"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "stand"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "run"
+
+[sub_resource type="AnimationNodeBlendTree" id=5]
+graph_offset = Vector2( -31.7546, 144.25 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( 133, 114 )
+"nodes/Animation 2/node" = SubResource( 6 )
+"nodes/Animation 2/position" = Vector2( 95, 418 )
+nodes/correr/node = SubResource( 7 )
+nodes/correr/position = Vector2( 95, 285 )
+nodes/output/position = Vector2( 418, 190 )
+node_connections = [ "output", 0, "correr" ]
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
-
-[node name="SpriteUp" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
-z_index = 1
-frames = SubResource( 1 )
-animation = "Slash"
-frame = 1
-speed_scale = 2.0
-playing = true
-
-[node name="SpriteDown" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
-animation = "Run"
-speed_scale = 2.0
-playing = true
 
 [node name="ColisionInferior" type="CollisionShape2D" parent="."]
 position = Vector2( -1.17966, 1.0275 )
@@ -129,3 +41,177 @@ margin_top = -80.0
 margin_right = -35.0
 margin_bottom = -40.0
 
+[node name="alpaca" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 12.0183, -51.9566 )
+
+[node name="brazo2-1" parent="alpaca/cuerpo/brazo2" index="0"]
+position = Vector2( -6.20545, -4.13422 )
+rotation = 0.340743
+scale = Vector2( 1, 1 )
+
+[node name="brazo2-2" parent="alpaca/cuerpo/brazo2/brazo2-1" index="0"]
+position = Vector2( -9.07204, -11.4297 )
+rotation = 0.37734
+scale = Vector2( 1, 1 )
+
+[node name="pierna2-1" parent="alpaca/cuerpo/pierna2" index="0"]
+position = Vector2( -12.6038, 26.0769 )
+rotation = -1.00862
+
+[node name="pierna2-2" parent="alpaca/cuerpo/pierna2/pierna2-1" index="0"]
+position = Vector2( 34.3309, 8.26987 )
+rotation = 0.837201
+scale = Vector2( 1, 1 )
+
+[node name="pie2" parent="alpaca/cuerpo/pierna2/pierna2-1/pierna2-2" index="0"]
+position = Vector2( 14.0986, 2.17015 )
+rotation = 0.177197
+scale = Vector2( 1, 1 )
+
+[node name="pierna1-1" parent="alpaca/cuerpo/pierna1" index="0"]
+position = Vector2( -8.49705, -3.80694 )
+rotation = -0.940325
+
+[node name="pierna1-2" parent="alpaca/cuerpo/pierna1/pierna1-1" index="0"]
+position = Vector2( 27.1619, 55.5039 )
+rotation = 1.4717
+
+[node name="pie1" parent="alpaca/cuerpo/pierna1/pierna1-1/pierna1-2" index="0"]
+position = Vector2( 29.4071, 18.467 )
+rotation = 0.402675
+scale = Vector2( 1, 1 )
+
+[node name="cuello" parent="alpaca/cuerpo/cabeza" index="0"]
+position = Vector2( 10.0141, 5.59604 )
+rotation = 0.192252
+
+[node name="craneo" parent="alpaca/cuerpo/cabeza" index="1"]
+position = Vector2( 32.5169, 8.19891 )
+rotation = -0.0377957
+
+[node name="tronco" parent="alpaca/cuerpo" index="4"]
+position = Vector2( 2.42879, 6.83431 )
+rotation = 0.192252
+
+[node name="1" parent="alpaca/cuerpo/capa3/capa" index="0"]
+position = Vector2( 23.7939, 15.1666 )
+rotation = 2.78884
+
+[node name="2" parent="alpaca/cuerpo/capa3/capa/1" index="0"]
+position = Vector2( 39.0949, 22.3704 )
+
+[node name="3" parent="alpaca/cuerpo/capa3/capa/1/2" index="0"]
+position = Vector2( 28.5551, -4.97359 )
+
+[node name="4" parent="alpaca/cuerpo/capa3/capa/1/2/3" index="0"]
+position = Vector2( 26.2631, -8.76084 )
+
+[node name="5" parent="alpaca/cuerpo/capa3/capa/1/2/3/4" index="0"]
+position = Vector2( 14.8006, 4.55044 )
+
+[node name="capa2" parent="alpaca/cuerpo" index="6"]
+position = Vector2( 4.65077, 12.1128 )
+rotation = 0.237119
+
+[node name="brazo1-1" parent="alpaca/cuerpo/brazo1" index="0"]
+position = Vector2( -18.7873, -1.78738 )
+rotation = 0.551759
+scale = Vector2( 1, 1 )
+
+[node name="brazo1-2" parent="alpaca/cuerpo/brazo1/brazo1-1" index="0"]
+position = Vector2( 1.57974, -32.2752 )
+rotation = -0.596294
+scale = Vector2( 1, 1 )
+
+[node name="capa" parent="alpaca/cuerpo" index="8"]
+position = Vector2( -1.05051, 0.363579 )
+rotation = 0.322645
+scale = Vector2( 1, 1 )
+
+[node name="capa1" parent="alpaca/cuerpo/capa" index="0"]
+visible = false
+
+[node name="boton" parent="alpaca/cuerpo/capa" index="1"]
+visible = false
+
+[node name="cuerpo" parent="alpaca/Skeleton2D" index="0"]
+position = Vector2( 0, 12.3256 )
+
+[node name="columna" parent="alpaca/Skeleton2D/cuerpo" index="0"]
+position = Vector2( -3.97215, 0.397245 )
+rotation = 0.192247
+
+[node name="brazo1-1" parent="alpaca/Skeleton2D/cuerpo/columna/hombro1" index="0"]
+position = Vector2( 34.5115, 17.111 )
+rotation = 0.359516
+
+[node name="brazo1-2" parent="alpaca/Skeleton2D/cuerpo/columna/hombro1/brazo1-1" index="0"]
+position = Vector2( 21.3765, -33.2927 )
+rotation = -2.60866
+
+[node name="RemoteTransform2D2" parent="alpaca/Skeleton2D/cuerpo/columna/hombro1/brazo1-1/brazo1-2" index="1"]
+position = Vector2( 41.1936, -30.985 )
+
+[node name="RemoteTransform2D" parent="alpaca/Skeleton2D/cuerpo/columna/hombro1/brazo1-1" index="1"]
+position = Vector2( -28.2675, -59.8088 )
+
+[node name="brazo2-1" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2" index="0"]
+position = Vector2( 20.41, -14.5112 )
+rotation = 1.92983
+
+[node name="brazo2-2" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2/brazo2-1" index="0"]
+position = Vector2( 39.7718, 4.26487 )
+rotation = 0.37734
+
+[node name="RemoteTransform2D4" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2/brazo2-1/brazo2-2" index="1"]
+position = Vector2( 25.6629, 13.0655 )
+
+[node name="RemoteTransform2D3" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2/brazo2-1" index="1"]
+position = Vector2( 68.0967, 14.6062 )
+
+[node name="cuello" parent="alpaca/Skeleton2D/cuerpo/columna" index="2"]
+position = Vector2( 72.5745, 5.3078 )
+
+[node name="cabeza" parent="alpaca/Skeleton2D/cuerpo/columna/cuello" index="0"]
+rotation = 1.43532
+
+[node name="tronco" parent="alpaca/Skeleton2D/cuerpo/columna" index="3"]
+position = Vector2( 8.35228, -6.62103 )
+
+[node name="capa2" parent="alpaca/Skeleton2D/cuerpo/columna" index="4"]
+position = Vector2( 3.59557, -3.43142 )
+rotation = 1.61566
+
+[node name="capa" parent="alpaca/Skeleton2D/cuerpo/columna" index="5"]
+position = Vector2( 14.039, -11.2726 )
+rotation = 1.70119
+
+[node name="pierna2-1" parent="alpaca/Skeleton2D/cuerpo/pierna2" index="0"]
+position = Vector2( -8.39363, -3.93952 )
+rotation = -1.00862
+
+[node name="pierna2-2" parent="alpaca/Skeleton2D/cuerpo/pierna2/pierna2-1" index="0"]
+rotation = 2.62965
+
+[node name="pie2" parent="alpaca/Skeleton2D/cuerpo/pierna2/pierna2-1/pierna2-2" index="0"]
+rotation = -1.49946
+
+[node name="pierna1-1" parent="alpaca/Skeleton2D/cuerpo/pierna1" index="0"]
+position = Vector2( 19.3703, 10.7363 )
+rotation = -2.31157
+
+[node name="pierna1-2" parent="alpaca/Skeleton2D/cuerpo/pierna1/pierna1-1" index="0"]
+position = Vector2( 44.4151, 1.82205 )
+rotation = 1.46954
+
+[node name="pie1" parent="alpaca/Skeleton2D/cuerpo/pierna1/pierna1-1/pierna1-2" index="0"]
+rotation = -1.30807
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../alpaca/alpaca-animacion")
+active = true
+
+
+[editable path="alpaca"]

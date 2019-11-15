@@ -1,16 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/UFO/ufo.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/NanoBuddy225.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=4]
+[ext_resource path="res://Backgrounds/Chemistry-S.jpg" type="Texture" id=1]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/TouchAnalog.gd" type="Script" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/BolaAnalogo.gd" type="Script" id=7]
-[ext_resource path="res://Backgrounds/Chemistry-S.jpg" type="Texture" id=8]
+[ext_resource path="res://Sprites/UFO/ufo.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/CameraObj.gd" type="Script" id=9]
-[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://icon.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 32 )
@@ -29,7 +28,7 @@ motion_scale = Vector2( 0, 1 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( -659.317, 6.70807 )
 scale = Vector2( 1.43907, 1.604 )
-texture = ExtResource( 8 )
+texture = ExtResource( 1 )
 centered = false
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -444,42 +443,36 @@ shape = SubResource( 1 )
 
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 2 )]
 position = Vector2( 4504.8, 351.94 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 2 )]
 position = Vector2( 2946.17, 339.196 )
 
 [node name="EnermyTest3" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 2 )]
 position = Vector2( 1734.77, 337.038 )
 
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 2 )]
 position = Vector2( 3706.25, 223.592 )
 
 [node name="EnermyTest7" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 2 )]
 position = Vector2( 926.144, 411.379 )
 
 [node name="Player" parent="." groups=[
 "Player",
-] instance=ExtResource( 11 )]
+] instance=ExtResource( 3 )]
 position = Vector2( 103.893, 375.471 )
 dashTime = 0.24
 analogoPath = NodePath("../UI/BaseAnalogo")
 fallcheckerPath = NodePath("../DeathfallChecket")
-
-[node name="Sprite2" type="Sprite" parent="Player"]
-position = Vector2( 18.59, -77.8004 )
-z_index = 5
-z_as_relative = false
-texture = ExtResource( 3 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -502,7 +495,7 @@ margin_left = -139.167
 margin_top = -136.072
 margin_right = -19.1672
 margin_bottom = -16.072
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 expand = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -525,7 +518,7 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 mouse_default_cursor_shape = 6
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -533,7 +526,7 @@ __meta__ = {
 
 [node name="CameraObjet" type="Sprite" parent="."]
 position = Vector2( 618.6, 310.503 )
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
 script = ExtResource( 9 )
 playerPath = NodePath("../Player")
 
@@ -543,4 +536,5 @@ current = true
 
 [node name="DeathfallChecket" type="Sprite" parent="."]
 position = Vector2( 31.4604, 871.64 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
+

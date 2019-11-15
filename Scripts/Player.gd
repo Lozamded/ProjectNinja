@@ -47,6 +47,8 @@ var dash = false
 var dashValue = 1
 var dashconst = 4.25
 
+var estado = "idle"
+
 export (NodePath) var analogoPath
 export (NodePath) var fallcheckerPath
 
@@ -57,8 +59,8 @@ func _ready():
 	analogo = get_node(analogoPath)
 	fallchecker = get_node(fallcheckerPath)
 	
-	$SpriteUp.modulate.a = 0
-	$SpriteDown.modulate.a = 0
+	#$SpriteUp.modulate.a = 0
+	#$SpriteDown.modulate.a = 0
 	
 	timerDamage = Timer.new()
 	add_child(timerDamage)
@@ -92,8 +94,8 @@ func _physics_process(delta):
 		
 	if is_on_floor():
 		dir = 1
-		$SpriteUp.flip_h = false
-		$SpriteDown.flip_h = false
+		#$SpriteUp.flip_h = false
+		#$SpriteDown.flip_h = false
 		empuje = 0
 		dirSalto = 0
 		dificultadsalto = 1
@@ -104,12 +106,14 @@ func _physics_process(delta):
 		$ColorRect.color = Color8(0,255,0,255)
 		#Sprites
 		if dash:
-			$SpriteUp.animation = "Fall"
-			$SpriteDown.animation = "Fall"
+			#$SpriteUp.animation = "Fall"
+			#$SpriteDown.animation = "Fall"
+			estado = "fall"
 
 		if dash == false : 
-			$SpriteUp.animation = "Run"
-			$SpriteDown.animation = "Run"
+			#$SpriteUp.animation = "Run"
+			#$SpriteDown.animation = "Run"
+			estado = "run"
 
 			
 	else:
@@ -129,37 +133,28 @@ func _physics_process(delta):
 		
 	if dash:
 		dashValue = dashconst
-		$SpriteUp.rotation_degrees = -90
-		$SpriteDown.rotation_degrees = -90
+
 	else:
 		dashValue = 1
-		$SpriteUp.rotation_degrees = 0
-		$SpriteDown.rotation_degrees = 0
+
 		
 	if Input.is_action_just_pressed("ui_attack") and move != 0:
 		if(canAttack == true):
 			canAttack = false
 			sprite_previo = $SpriteUp.animation
 			attack = true
-			$SpriteUp.speed_scale = 0.25
-			$SpriteUp.animation = "Slash"
+			#$SpriteUp.speed_scale = 0.25
+			#$SpriteUp.animation = "Slash"
 			
 			
 			
-	if $SpriteUp.animation == "Slash":
-		if( $SpriteUp.frame == $SpriteUp.frames.get_frame_count("Slash") -1):
-			print("temino el ataque")
-			attack = false
-	else:
-		canAttack = true
-		attack = false
 		
 #Saltos
 	
-	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.25 ) ) and jump and dash ==false: 
+	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and jump and dash ==false: 
 		saltando = true
 	
-	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.25 ) ) and move != 0 :
+	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and move != 0 :
 		jump = false
 		
 		if grab == true:
@@ -175,10 +170,12 @@ func _physics_process(delta):
 		if saltando:
 			if subida < tope*0.95:
 				if(attack == false):
-					$SpriteUp.animation = "Jump"
-					$SpriteDown.animation = "Jump"
+					#$SpriteUp.animation = "Jump"
+					#$SpriteDown.animation = "Jump"
+					estado = "jump"
 				else:
-					$SpriteDown.animation = "Fall"
+					#$SpriteDown.animation = "Fall"
+					estado = "fall"
 				subida = lerp(subida,tope, 0.2)
 			else:
 				saltando = false
@@ -190,11 +187,7 @@ func _physics_process(delta):
 		dirSalto = dir
 	
 	if not saltando:
-		subida = lerp(subida,0,0.1)
-		if not is_on_floor():
-			if(attack == false):
-				$SpriteUp.animation = "Fall"
-			$SpriteDown.animation = "Fall"
+		subida = lerp(subida,0,0.1)		
 			
 		if grab == false:
 			gravity += 1450 * delta
@@ -204,9 +197,9 @@ func _physics_process(delta):
 			jump = true
 			subida = 0
 			controlEnSalto = 1
-			if(attack == false):
-				$SpriteUp.animation = "Hold"
-			$SpriteDown.animation = "Hold"
+#			if(attack == false):
+#				$SpriteUp.animatio= "Hold"
+#			$SpriteDown.animation = "Hold 
 			jump = false
 			grabMovement = 0
 
@@ -227,11 +220,11 @@ func _physics_process(delta):
 		
 	
 	if damage:
-		subida += 4
 		empuje += empujeconst
 		move = 0
-		$SpriteUp.animation = "Damage"
-		$SpriteDown.animation = "Damage"
+		#$SpriteUp.animation = "Damage"
+		#$SpriteDown.animation = "Damage"
+		estado = "damage"
 		canGrab = false
 		
 	if position.y > fallchecker.position.y:
@@ -246,9 +239,9 @@ func setDamage(punchDir):
 	damage = true
 	match punchDir:
 		1: 
-			empujeconst = 12
+			empujeconst = 24
 		-1:
-			empujeconst =  -12
+			empujeconst =  -24
 		
 func stopDamage():
 	empuje = 0
