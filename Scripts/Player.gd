@@ -17,7 +17,9 @@ var move = 1
 var damage = false
 var correr = 1
 var dificultadsalto = 1
-const corrida = 2.25
+var velocidadsalto = 2.24
+var empujesalto = 1
+const corrida = 2.45
 
 var timerDamage
 var timerGrab = 0
@@ -39,10 +41,12 @@ var attackTimer = 12
 var empuje = 0
 var empujeconst = 265
 
+var canrun = true
 
 var canDash = true
+var enddash = false
 var timerDash
-export var dashTime = 1.25
+export var dashTime = 0.65
 var dash = false
 var dashValue = 1
 var dashconst = 4.25
@@ -58,6 +62,8 @@ var fallchecker
 func _ready():
 	analogo = get_node(analogoPath)
 	fallchecker = get_node(fallcheckerPath)
+	
+	$AnimaPlayer.active = true
 	
 	#$SpriteUp.modulate.a = 0
 	#$SpriteDown.modulate.a = 0
@@ -78,11 +84,11 @@ func _ready():
 	add_child(timerDash)
 	timerDash.set_one_shot(true)
 	timerDash.set_wait_time(dashTime)
-	timerDash.connect("timeout",self,"canDashAgain")
+	timerDash.connect("timeout",self,"endDash")
 
 func _physics_process(delta):
 	
-	move_x = 265 * dashValue * dificultadsalto * move + empuje
+	move_x = 265 * dashValue * empujesalto * move + empuje
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
@@ -108,21 +114,19 @@ func _physics_process(delta):
 		if dash:
 			#$SpriteUp.animation = "Fall"
 			#$SpriteDown.animation = "Fall"
-			estado = "fall"
-
-		if dash == false : 
+			estado = "dash"
+			
+		if enddash == true and $AnimaPlayer.get("parameters/shot/active") :
 			#$SpriteUp.animation = "Run"
 			#$SpriteDown.animation = "Run"
 			estado = "run"
-
+			dash = false
+			enddash = false
+			canDash = true
 			
-	else:
-		$ColorRect.color = Color8(255,0,0,255)
-		if saltando == false:
-			if dirSalto != dir and dirSalto != 0:
-				dificultadsalto = 0.45
-			else:
-				dificultadsalto = 1
+		if dash == false and enddash == false:
+			estado = "run"
+
 				
 	
 	if (Input.is_action_pressed("ui_run")  or analogo.joystick_vector.x < -0.35 ) and is_on_floor() and canDash:
@@ -139,9 +143,12 @@ func _physics_process(delta):
 
 		
 	if Input.is_action_just_pressed("ui_attack") and move != 0:
+		print ("hacer el dash")
+		estado = "enddash"
+		
 		if(canAttack == true):
 			canAttack = false
-			sprite_previo = $SpriteUp.animation
+			#sprite_previo = $SpriteUp.animation
 			attack = true
 			#$SpriteUp.speed_scale = 0.25
 			#$SpriteUp.animation = "Slash"
@@ -153,55 +160,35 @@ func _physics_process(delta):
 	
 	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and jump and dash ==false: 
 		saltando = true
+		enddash = false
+		canDash = true
 	
 	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and move != 0 :
 		jump = false
 		
-		if grab == true:
-			dificultadsalto = 0.25
-			match dir:
-				1:
-					empuje += 81
-				-1:
-					empuje -= 91
-		else:
-			empuje = 0
-		
 		if saltando:
+			empujesalto = 2.24
 			if subida < tope*0.95:
-				if(attack == false):
-					#$SpriteUp.animation = "Jump"
-					#$SpriteDown.animation = "Jump"
-					estado = "jump"
-				else:
-					#$SpriteDown.animation = "Fall"
-					estado = "fall"
+				estado = "jump"
 				subida = lerp(subida,tope, 0.2)
 			else:
 				saltando = false
 				dirSalto = dir
+				estado = "fall"
 
 		
 	elif (Input.is_action_just_released("ui_accept") or analogo.joystick_active == false) and saltando and damage == false:
 		saltando = false
 		dirSalto = dir
+		
 	
 	if not saltando:
+		empujesalto = 1
 		subida = lerp(subida,0,0.1)		
-			
-		if grab == false:
-			gravity += 1450 * delta
-			grabMovement = 1
-		else:
-			gravity = 0
-			jump = true
-			subida = 0
-			controlEnSalto = 1
-#			if(attack == false):
-#				$SpriteUp.animatio= "Hold"
-#			$SpriteDown.animation = "Hold 
-			jump = false
-			grabMovement = 0
+		gravity += 1450 * delta
+		grabMovement = 1
+
+		
 
 		
 	var colliders = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
@@ -231,6 +218,32 @@ func _physics_process(delta):
 		print ("I'm dead")
 		get_tree().reload_current_scene()
 		
+	
+	#print ("estado " + estado)
+	
+	match estado:
+		"run":
+			$AnimaPlayer.set("parameters/ani1/current",1)
+			$AnimaPlayer.set("parameters/speed/scale",3.65)
+						
+		"jump":
+			$AnimaPlayer.set("parameters/ani1/current",2)
+			$AnimaPlayer.set("parameters/speed/scale",3.12)
+			
+		"fall":
+			$AnimaPlayer.set("parameters/ani1/current",3)
+			$AnimaPlayer.set("parameters/speed/scale",3.65)
+			
+		"dash":
+			$AnimaPlayer.set("parameters/ani1/current",4)
+			$AnimaPlayer.set("parameters/speed/scale",3.65)
+			
+		"enddash":
+			$AnimaPlayer.set("parameters/shot/active",true)
+			$AnimaPlayer.set("parameters/speed/scale",12.12)
+			
+			#$AnimaPlayer.get
+
 
 func setDamage(punchDir):
 	jump = true
@@ -255,8 +268,21 @@ func stopDamage():
 func canGrabAgain():
 	canGrab = true
 	
+func endDash():
+	print ("----------------STOP dash----------------")
+	dash = false
+	estado = "enddash"
+	enddash = true
+	#canDash = true
+	#canrun = true
+
+	#dash = false
+	
 func canDashAgain():
 	print ("STOP dash")
-	subida += 4
+	estado = "enddash"
 	dash = false
 	canDash = true
+	
+	
+

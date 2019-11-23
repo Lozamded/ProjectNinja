@@ -9,7 +9,7 @@ var move_y = 0
 var subida = 0
 
 onready var player = get_parent().get_node("Player")
-onready var enemy = get_parent().get_node("Enemys")
+#onready var enemy = get_parent().get_node("Enemys")
 
 var choque = false
 var timerChoque
@@ -29,7 +29,7 @@ func _ready():
 	timerChoque.set_one_shot(true)
 	timerChoque.set_wait_time(choqueColdown)
 	timerChoque.connect("timeout",self,"yaChoco")
-	add_collision_exception_with(enemy)
+#	add_collision_exception_with(enemy)
 	
 
 func _physics_process(delta):

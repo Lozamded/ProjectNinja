@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Backgrounds/Chemistry-S.jpg" type="Texture" id=1]
-[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/TouchAnalog.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=6]
@@ -207,7 +207,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor8" type="StaticBody2D" parent="."]
-position = Vector2( 1529.88, 530.681 )
+position = Vector2( 1533.56, 535.592 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
 collision_mask = 3
@@ -441,40 +441,33 @@ color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 106.168, 407.55 )
+analogoPath = NodePath("../UI/BaseAnalogo")
+fallcheckerPath = NodePath("../DeathfallChecket")
+
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 2 )]
+] instance=ExtResource( 3 )]
 position = Vector2( 4504.8, 351.94 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 2 )]
+] instance=ExtResource( 3 )]
 position = Vector2( 2946.17, 339.196 )
 
 [node name="EnermyTest3" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 2 )]
-position = Vector2( 1734.77, 337.038 )
+] instance=ExtResource( 3 )]
+position = Vector2( 6536.63, 395.339 )
 
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 2 )]
+] instance=ExtResource( 3 )]
 position = Vector2( 3706.25, 223.592 )
 
-[node name="EnermyTest7" parent="." groups=[
-"Enemys",
-] instance=ExtResource( 2 )]
-position = Vector2( 926.144, 411.379 )
-
-[node name="Player" parent="." groups=[
-"Player",
-] instance=ExtResource( 3 )]
-position = Vector2( 103.893, 375.471 )
-dashTime = 0.24
-analogoPath = NodePath("../UI/BaseAnalogo")
-fallcheckerPath = NodePath("../DeathfallChecket")
-
 [node name="UI" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="CheckButton" type="CheckButton" parent="UI"]
 margin_left = 1173.29
@@ -525,7 +518,7 @@ __meta__ = {
 }
 
 [node name="CameraObjet" type="Sprite" parent="."]
-position = Vector2( 618.6, 310.503 )
+position = Vector2( 622.025, 310.503 )
 texture = ExtResource( 8 )
 script = ExtResource( 9 )
 playerPath = NodePath("../Player")
