@@ -56,6 +56,8 @@ var estado = "idle"
 export (NodePath) var analogoPath
 export (NodePath) var fallcheckerPath
 
+var playback = AnimationNodeStateMachinePlayback
+
 var analogo
 var fallchecker
 
@@ -63,8 +65,12 @@ func _ready():
 	analogo = get_node(analogoPath)
 	fallchecker = get_node(fallcheckerPath)
 	
-
-	$AnimaPlayer.active = true
+	
+	playback = $AnimaPlayer.get("parameters/playback")
+	print ( playback)
+	#playback.active = true
+	
+	playback.start("run")
 	
 	#$SpriteUp.modulate.a = 0
 	#$SpriteDown.modulate.a = 0
@@ -110,23 +116,7 @@ func _physics_process(delta):
 		jump = true
 		subida = 0
 		controlEnSalto = 1
-		$ColorRect.color = Color8(0,255,0,255)
-		#Sprites
-		if dash:
-			#$SpriteUp.animation = "Fall"
-			#$SpriteDown.animation = "Fall"
-			estado = "dash"
-			
-		if enddash == true and $AnimaPlayer.get("parameters/shot/active") :
-			#$SpriteUp.animation = "Run"
-			#$SpriteDown.animation = "Run"
-			estado = "run"
-			dash = false
-			enddash = false
-			canDash = true
-			
-		if dash == false and enddash == false:
-			estado = "run"
+		#$ColorRect.color = Color8(0,255,0,255)
 
 				
 	
@@ -135,16 +125,15 @@ func _physics_process(delta):
 		timerDash.start()
 		dash = true
 		canDash = false
-		
+		playback.start("deslizar-entrada")
 	if dash:
 		dashValue = dashconst
-
 	else:
 		dashValue = 1
 
 		
 	if Input.is_action_just_pressed("ui_attack") and move != 0:
-		print ("hacer el dash")
+		#print ("hacer el dash")
 		estado = "enddash"
 		
 		if(canAttack == true):
@@ -159,7 +148,8 @@ func _physics_process(delta):
 		
 #Saltos
 	
-	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and jump and dash ==false: 
+	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and jump and dash ==false:
+		playback.start("jump-entrada") 
 		saltando = true
 		enddash = false
 		canDash = true
@@ -173,6 +163,7 @@ func _physics_process(delta):
 				estado = "jump"
 				subida = lerp(subida,tope, 0.2)
 			else:
+				playback.start("jump-salida")
 				saltando = false
 				dirSalto = dir
 				estado = "fall"
@@ -188,8 +179,6 @@ func _physics_process(delta):
 		subida = lerp(subida,0,0.1)		
 		gravity += 1450 * delta
 		grabMovement = 1
-
-		
 
 		
 	var colliders = move_and_slide(Vector2(move_x,gravity-subida), Vector2(0,-1))
@@ -221,30 +210,6 @@ func _physics_process(delta):
 		
 	
 	#print ("estado " + estado)
-	
-	match estado:
-		"run":
-			$AnimaPlayer.set("parameters/ani1/current",1)
-			$AnimaPlayer.set("parameters/speed/scale",3.65)
-						
-		"jump":
-			$AnimaPlayer.set("parameters/ani1/current",2)
-			$AnimaPlayer.set("parameters/speed/scale",3.12)
-			
-		"fall":
-			$AnimaPlayer.set("parameters/ani1/current",3)
-			$AnimaPlayer.set("parameters/speed/scale",3.65)
-			
-		"dash":
-			$AnimaPlayer.set("parameters/ani1/current",4)
-			$AnimaPlayer.set("parameters/speed/scale",3.65)
-			
-		"enddash":
-			$AnimaPlayer.set("parameters/shot/active",true)
-			$AnimaPlayer.set("parameters/speed/scale",6.12)
-			
-			#$AnimaPlayer.get
-
 
 func setDamage(punchDir):
 	jump = true
@@ -274,6 +239,7 @@ func endDash():
 	dash = false
 	estado = "enddash"
 	enddash = true
+	playback.start("deslizar-salida")
 	#canDash = true
 	#canrun = true
 

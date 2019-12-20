@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Backgrounds/Chemistry-S.jpg" type="Texture" id=1]
-[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/TouchAnalog.gd" type="Script" id=5]
-[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/BolaAnalogo.gd" type="Script" id=7]
-[ext_resource path="res://Sprites/UFO/ufo.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/CameraObj.gd" type="Script" id=9]
-[ext_resource path="res://icon.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/monstruo.png" type="Texture" id=11]
+[ext_resource path="res://Scennes/KinematicBody2D-prueba.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Player2.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_JoyBG.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/TouchAnalog.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/Analog/Godot_TouchScreen_Joysticks_Joy.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/BolaAnalogo.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/UFO/ufo.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/CameraObj.gd" type="Script" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/monstruo.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 32 )
@@ -442,33 +443,33 @@ color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 106.168, 407.55 )
+[node name="Alpaca" parent="." instance=ExtResource( 2 )]
+position = Vector2( 142.265, 396.11 )
+script = ExtResource( 3 )
 analogoPath = NodePath("../UI/BaseAnalogo")
 fallcheckerPath = NodePath("../DeathfallChecket")
 
 [node name="EnermyTest" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 4504.8, 351.94 )
 
 [node name="EnermyTest2" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 2946.17, 339.196 )
 
 [node name="EnermyTest3" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 6536.63, 395.339 )
 
 [node name="EnermyTest6" parent="." groups=[
 "Enemys",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 3706.25, 223.592 )
 
 [node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="CheckButton" type="CheckButton" parent="UI"]
 margin_left = 1173.29
@@ -489,9 +490,9 @@ margin_left = -139.167
 margin_top = -136.072
 margin_right = -19.1672
 margin_bottom = -16.072
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 expand = true
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -512,17 +513,17 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 mouse_default_cursor_shape = 6
-texture = ExtResource( 6 )
-script = ExtResource( 7 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CameraObjet" type="Sprite" parent="."]
 position = Vector2( 622.025, 310.503 )
-texture = ExtResource( 8 )
-script = ExtResource( 9 )
-playerPath = NodePath("../Player")
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
+playerPath = NodePath("../Alpaca")
 
 [node name="Camera2D" type="Camera2D" parent="CameraObjet"]
 position = Vector2( 21.5273, 49.8634 )
@@ -530,8 +531,8 @@ current = true
 
 [node name="DeathfallChecket" type="Sprite" parent="."]
 position = Vector2( 31.4604, 871.64 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="monstruo" type="Sprite" parent="."]
 position = Vector2( 7878.87, 321.397 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )

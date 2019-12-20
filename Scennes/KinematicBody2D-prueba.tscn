@@ -1,108 +1,81 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scennes/alpaca-animacion4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scennes/alpaca-animacion4.tscn" type="PackedScene" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 56.3842, 94.4353 )
+extents = Vector2( 41.2433, 99.026 )
 
-[sub_resource type="AnimationNodeTimeScale" id=2]
-
-[sub_resource type="AnimationNodeTimeScale" id=3]
-
-[sub_resource type="AnimationNodeTransition" id=4]
-input_count = 5
-input_0/name = "stand"
-input_0/auto_advance = false
-input_1/name = "run"
-input_1/auto_advance = false
-input_2/name = "jump"
-input_2/auto_advance = false
-input_3/name = "fall"
-input_3/auto_advance = false
-input_4/name = "slide"
-input_4/auto_advance = false
-
-[sub_resource type="AnimationNodeTransition" id=5]
-input_count = 1
-xfade_time = 3.53035e-032
-input_0/name = "endslide"
-input_0/auto_advance = false
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "deslizar-salida"
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "deslizar-entrada"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "jump-salida"
+animation = "deslizar-salida"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "jump-entrada"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
+animation = "jump-salida"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "run"
 
-[sub_resource type="AnimationNodeOneShot" id=10]
-autorestart_random_delay = -40.0
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+xfade_time = 0.12
 
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "deslizar-entrada"
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 1
+xfade_time = 0.12
 
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "stand"
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+auto_advance = true
+xfade_time = 0.12
 
-[sub_resource type="AnimationNodeBlendTree" id=13]
-resource_local_to_scene = true
-graph_offset = Vector2( 0, -127 )
-nodes/TimeScale/node = SubResource( 3 )
-nodes/TimeScale/position = Vector2( 540, 100 )
-"nodes/TimeScale 2/node" = SubResource( 2 )
-"nodes/TimeScale 2/position" = Vector2( 540, 280 )
-nodes/ani1/node = SubResource( 4 )
-nodes/ani1/position = Vector2( 340, 80 )
-nodes/ani2/node = SubResource( 5 )
-nodes/ani2/position = Vector2( 380, 520 )
-nodes/endSlide/node = SubResource( 6 )
-nodes/endSlide/position = Vector2( 60, 600 )
-nodes/fall/node = SubResource( 7 )
-nodes/fall/position = Vector2( 40, 340 )
-nodes/jump/node = SubResource( 8 )
-nodes/jump/position = Vector2( 40, 220 )
-nodes/output/position = Vector2( 1060, 100 )
-nodes/run/node = SubResource( 9 )
-nodes/run/position = Vector2( 40, 100 )
-nodes/shot/node = SubResource( 10 )
-nodes/shot/position = Vector2( 780, 60 )
-nodes/slide/node = SubResource( 11 )
-nodes/slide/position = Vector2( 40, 460 )
-nodes/stand/node = SubResource( 12 )
-nodes/stand/position = Vector2( 40, -20 )
-node_connections = [ "output", 0, "shot", "TimeScale 2", 0, "ani2", "ani1", 0, "stand", "ani1", 1, "run", "ani1", 2, "jump", "ani1", 3, "fall", "ani1", 4, "slide", "TimeScale", 0, "ani1", "shot", 0, "TimeScale", "shot", 1, "TimeScale 2", "ani2", 0, "endSlide" ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+xfade_time = 0.12
 
-[node name="Player" type="KinematicBody2D"]
-script = ExtResource( 1 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 1
+xfade_time = 0.12
 
-[node name="ColisionInferior" type="CollisionShape2D" parent="."]
-position = Vector2( 8.68353, -96.6773 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+auto_advance = true
+xfade_time = 0.12
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/deslizar-entrada/node = SubResource( 2 )
+states/deslizar-entrada/position = Vector2( 375, 368 )
+states/deslizar-salida/node = SubResource( 7 )
+states/deslizar-salida/position = Vector2( 631, 360 )
+states/jump-entrada/node = SubResource( 8 )
+states/jump-entrada/position = Vector2( 387, 127 )
+states/jump-salida/node = SubResource( 9 )
+states/jump-salida/position = Vector2( 844, 107 )
+states/run/node = SubResource( 3 )
+states/run/position = Vector2( 440, 244 )
+transitions = [ "run", "deslizar-entrada", SubResource( 4 ), "deslizar-entrada", "deslizar-salida", SubResource( 10 ), "deslizar-salida", "run", SubResource( 11 ), "run", "jump-entrada", SubResource( 12 ), "jump-entrada", "jump-salida", SubResource( 13 ), "jump-salida", "run", SubResource( 14 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[node name="Alpaca" type="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 22.9882, -106.515 )
 shape = SubResource( 1 )
-one_way_collision_margin = 0.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -57.2788
-margin_top = -211.027
-margin_right = -17.2788
-margin_bottom = -171.027
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimaPlayer" type="AnimationTree" parent="."]
-tree_root = SubResource( 13 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("../alpaca/alpaca-animacion")
 active = true
-parameters/TimeScale/scale = 1.12
-"parameters/TimeScale 2/scale" = 1.12
-parameters/ani1/current = 2
-parameters/ani2/current = 0
-parameters/shot/active = false
+parameters/playback = SubResource( 6 )
 
-[node name="alpaca" parent="." instance=ExtResource( 2 )]
+[node name="alpaca" parent="." instance=ExtResource( 1 )]
+
+[node name="brazo2" parent="alpaca/cuerpo" index="0"]
+editor/display_folded = false
 
 [node name="brazo2-1" parent="alpaca/cuerpo/brazo2" index="0"]
 position = Vector2( 65.2422, -21.3032 )
@@ -111,6 +84,9 @@ rotation = -0.740863
 [node name="brazo2-2" parent="alpaca/cuerpo/brazo2/brazo2-1" index="0"]
 position = Vector2( -10.9681, -20.3467 )
 rotation = 0.672948
+
+[node name="brazo2-1" parent="alpaca/cuerpo/brazo2/brazo2-1" index="1"]
+position = Vector2( 24.7022, -52.5164 )
 
 [node name="pierna2-1" parent="alpaca/cuerpo/pierna2" index="0"]
 position = Vector2( 11.4903, -3.09032 )
@@ -145,6 +121,12 @@ rotation = 0.244463
 position = Vector2( 11.3395, -27.4126 )
 rotation = 0.148216
 
+[node name="oreja2" parent="alpaca/cuerpo/cabeza/craneo" index="0"]
+rotation = -0.213923
+
+[node name="oreja1" parent="alpaca/cuerpo/cabeza/craneo" index="5"]
+rotation = 0.136657
+
 [node name="tronco" parent="alpaca/cuerpo" index="4"]
 position = Vector2( 0.32304, -29.8089 )
 rotation = 0.244463
@@ -169,6 +151,9 @@ rotation = 0.356637
 [node name="capa" parent="alpaca/cuerpo" index="8"]
 position = Vector2( -2.83113, -33.3049 )
 rotation = 0.330729
+
+[node name="Skeleton2D" parent="alpaca" index="2"]
+editor/display_folded = true
 
 [node name="cuerpo" parent="alpaca/Skeleton2D" index="0"]
 position = Vector2( 0, -28.2321 )
@@ -204,23 +189,21 @@ rotation = 1.65706
 [node name="1" parent="alpaca/Skeleton2D/cuerpo/columna/capa3" index="0"]
 position = Vector2( 74.7996, 69.9783 )
 rotation = 4.31458
-scale = Vector2( 1, 0.573287 )
+scale = Vector2( 1, 0.597299 )
 
 [node name="2" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1" index="0"]
-position = Vector2( 32.021, 10.8387 )
-rotation = 0.590759
+position = Vector2( 34.9755, 3.6688 )
+rotation = -0.464997
 
 [node name="3" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2" index="0"]
-position = Vector2( 33.0021, -15.9946 )
-rotation = -1.14342
+position = Vector2( 23.3547, 2.65362 )
 
 [node name="4" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2/3" index="0"]
-position = Vector2( 32.4436, 18.5002 )
-rotation = 0.814913
+position = Vector2( 20.4187, 11.9321 )
 
 [node name="5" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2/3/4" index="0"]
-position = Vector2( 29.7158, 12.844 )
-rotation = 0.253102
+position = Vector2( 29.3341, 16.4767 )
+rotation = 0.32749
 
 [node name="pierna2-1" parent="alpaca/Skeleton2D/cuerpo/pierna2" index="0"]
 position = Vector2( 9.96717, 4.94553 )
