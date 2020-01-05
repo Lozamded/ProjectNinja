@@ -52,6 +52,7 @@ var dashValue = 1
 var dashconst = 4.25
 
 var estado = "idle"
+var estadoPrevio = "iddle" 
 
 export (NodePath) var analogoPath
 export (NodePath) var fallcheckerPath
@@ -99,13 +100,16 @@ func _physics_process(delta):
 	
 	#print ("move X: " + str(move_x) + " dir " + str (dir)  + " saltoDir " + str(dirSalto) + " canAttack " + str(canAttack) + " Attack " + str(attack) )
 	#print ("Grab "+ str(grab) + " Grab timer: " + str(grabTimer) + " jump " + str(jump) )
-	
+	print("---ESTADO: "+ estado+ " ---")
 	
 	#colisionador = $ColisionInferior.get_overlapping_bodies()
 	#print ("colision " + str(colisionador) + "total " + str(colisionador.size()))
 	#print ("move_x: " + str(move_x) + " subida: " + str(subida)  + " damage: " + str(damage) + " canGrab: " + str(canGrab) )
 		
 	if is_on_floor():
+		if (estado == "fall" or estado  == "jump"):
+			estado = "run"
+			playback.start("jump-salida")
 		dir = 1
 		#$SpriteUp.flip_h = false
 		#$SpriteDown.flip_h = false
@@ -117,6 +121,11 @@ func _physics_process(delta):
 		subida = 0
 		controlEnSalto = 1
 		#$ColorRect.color = Color8(0,255,0,255)
+		
+	else:
+		if (estado != "jump" and estado != "dash"):
+			estado = "fall"
+			playback.start("jump-caida")
 
 				
 	
@@ -126,6 +135,9 @@ func _physics_process(delta):
 		dash = true
 		canDash = false
 		playback.start("deslizar-entrada")
+		estadoPrevio = estado
+		estado = "dash"
+		
 	if dash:
 		dashValue = dashconst
 	else:
@@ -163,7 +175,7 @@ func _physics_process(delta):
 				estado = "jump"
 				subida = lerp(subida,tope, 0.2)
 			else:
-				playback.start("jump-salida")
+				playback.start("jump-caida")
 				saltando = false
 				dirSalto = dir
 				estado = "fall"
@@ -193,6 +205,7 @@ func _physics_process(delta):
 	
 	if is_on_ceiling():
 		saltando = false
+		playback.start("jump-salida")
 		subida = 0
 		
 	
@@ -237,6 +250,7 @@ func canGrabAgain():
 func endDash():
 	print ("----------------STOP dash----------------")
 	dash = false
+	canDash = true #Evaluar para despues limitar tiempo entre dash
 	estado = "enddash"
 	enddash = true
 	playback.start("deslizar-salida")
@@ -247,7 +261,7 @@ func endDash():
 	
 func canDashAgain():
 	print ("STOP dash")
-	estado = "enddash"
+	estado = estadoPrevio
 	dash = false
 	canDash = true
 	

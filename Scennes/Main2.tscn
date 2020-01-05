@@ -317,6 +317,29 @@ __meta__ = {
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
+[node name="Floor23" type="StaticBody2D" parent="."]
+position = Vector2( 15990.9, 600.055 )
+scale = Vector2( 189.581, 1.79929 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor23"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Collision" type="CollisionShape2D" parent="Floor23"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
 [node name="Floor11" type="StaticBody2D" parent="."]
 position = Vector2( 4845.5, 777.834 )
 rotation = 1.5708
@@ -401,6 +424,27 @@ color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
+[node name="Floor22" type="StaticBody2D" parent="."]
+position = Vector2( 7707.99, 1075.73 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor22"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor22"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
 [node name="Floor12" type="StaticBody2D" parent="."]
 position = Vector2( 5022.32, 746.944 )
 rotation = 1.5708
@@ -440,6 +484,27 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor14"]
+scale = Vector2( 2.46154, 1 )
+shape = SubResource( 1 )
+
+[node name="Floor21" type="StaticBody2D" parent="."]
+position = Vector2( 4888.92, 753.452 )
+rotation = 1.5708
+scale = Vector2( 15.75, 0.75 )
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="ColorRect" parent="Floor21"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+color = Color( 0.017395, 0.296875, 0.0414128, 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="Floor21"]
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 

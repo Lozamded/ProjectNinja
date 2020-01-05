@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scennes/alpaca-animacion4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scennes/alpaca-animacion.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 56.3842, 94.4353 )
@@ -52,7 +52,7 @@ animation = "stand"
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
 resource_local_to_scene = true
-graph_offset = Vector2( 0, -127 )
+graph_offset = Vector2( 0, -20 )
 nodes/TimeScale/node = SubResource( 3 )
 nodes/TimeScale/position = Vector2( 540, 100 )
 "nodes/TimeScale 2/node" = SubResource( 2 )
@@ -76,7 +76,7 @@ nodes/slide/node = SubResource( 11 )
 nodes/slide/position = Vector2( 40, 460 )
 nodes/stand/node = SubResource( 12 )
 nodes/stand/position = Vector2( 40, -20 )
-node_connections = [ "output", 0, "shot", "TimeScale 2", 0, "ani2", "ani1", 0, "stand", "ani1", 1, "run", "ani1", 2, "jump", "ani1", 3, "fall", "ani1", 4, "slide", "TimeScale", 0, "ani1", "shot", 0, "TimeScale", "shot", 1, "TimeScale 2", "ani2", 0, "endSlide" ]
+node_connections = [ "output", 0, "shot", "TimeScale", 0, "ani1", "TimeScale 2", 0, "ani2", "ani1", 0, "stand", "ani1", 1, "run", "ani1", 2, "jump", "ani1", 3, "fall", "ani1", 4, "slide", "shot", 0, "TimeScale", "shot", 1, "TimeScale 2", "ani2", 0, "endSlide" ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -103,6 +103,7 @@ parameters/ani2/current = 0
 parameters/shot/active = false
 
 [node name="alpaca" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 
 [node name="brazo2-1" parent="alpaca/cuerpo/brazo2" index="0"]
 position = Vector2( 65.2422, -21.3032 )
@@ -145,6 +146,12 @@ rotation = 0.244463
 position = Vector2( 11.3395, -27.4126 )
 rotation = 0.148216
 
+[node name="oreja2" parent="alpaca/cuerpo/cabeza/craneo" index="0"]
+rotation = 0.0770434
+
+[node name="oreja1" parent="alpaca/cuerpo/cabeza/craneo" index="5"]
+rotation = -0.0682346
+
 [node name="tronco" parent="alpaca/cuerpo" index="4"]
 position = Vector2( 0.32304, -29.8089 )
 rotation = 0.244463
@@ -170,9 +177,6 @@ rotation = 0.356637
 position = Vector2( -2.83113, -33.3049 )
 rotation = 0.330729
 
-[node name="cuerpo" parent="alpaca/Skeleton2D" index="0"]
-position = Vector2( 0, -28.2321 )
-
 [node name="columna" parent="alpaca/Skeleton2D/cuerpo" index="0"]
 rotation = 0.244458
 
@@ -180,22 +184,16 @@ rotation = 0.244458
 rotation = 0.459783
 
 [node name="brazo1-2" parent="alpaca/Skeleton2D/cuerpo/columna/hombro1/brazo1-1" index="0"]
-position = Vector2( 19.108, -34.8187 )
 rotation = -1.65573
 
 [node name="brazo2-1" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2" index="0"]
-position = Vector2( 17.6162, 2.92685 )
 rotation = 0.796015
 
 [node name="brazo2-2" parent="alpaca/Skeleton2D/cuerpo/columna/hombro2/brazo2-1" index="0"]
-position = Vector2( 29.963, 4.03964 )
 rotation = 0.672948
 
 [node name="cabeza" parent="alpaca/Skeleton2D/cuerpo/columna/cuello" index="0"]
 rotation = 1.56912
-
-[node name="tronco" parent="alpaca/Skeleton2D/cuerpo/columna" index="3"]
-position = Vector2( -0.0703153, -6.79677 )
 
 [node name="capa" parent="alpaca/Skeleton2D/cuerpo/columna" index="5"]
 position = Vector2( 2.55824, -10.7033 )
@@ -207,23 +205,22 @@ rotation = 4.31458
 scale = Vector2( 1, 0.573287 )
 
 [node name="2" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1" index="0"]
-position = Vector2( 32.021, 10.8387 )
-rotation = 0.590759
+position = Vector2( 35.6785, 2.46645 )
+rotation = -0.086373
 
 [node name="3" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2" index="0"]
-position = Vector2( 33.0021, -15.9946 )
-rotation = -1.14342
+position = Vector2( 30.6171, -16.1477 )
+rotation = -0.585542
 
 [node name="4" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2/3" index="0"]
-position = Vector2( 32.4436, 18.5002 )
-rotation = 0.814913
+position = Vector2( 22.1394, 26.233 )
+rotation = 0.417315
 
 [node name="5" parent="alpaca/Skeleton2D/cuerpo/columna/capa3/1/2/3/4" index="0"]
-position = Vector2( 29.7158, 12.844 )
-rotation = 0.253102
+position = Vector2( 30.2321, 13.8054 )
+rotation = 0.375707
 
 [node name="pierna2-1" parent="alpaca/Skeleton2D/cuerpo/pierna2" index="0"]
-position = Vector2( 9.96717, 4.94553 )
 rotation = -1.309
 
 [node name="pierna2-2" parent="alpaca/Skeleton2D/cuerpo/pierna2/pierna2-1" index="0"]
@@ -233,7 +230,6 @@ rotation = 2.70156
 rotation = -1.19601
 
 [node name="pierna1-1" parent="alpaca/Skeleton2D/cuerpo/pierna1" index="0"]
-position = Vector2( 25.0936, -7.97124 )
 rotation = -2.81197
 
 [node name="pierna1-2" parent="alpaca/Skeleton2D/cuerpo/pierna1/pierna1-1" index="0"]
@@ -241,8 +237,5 @@ rotation = 1.59172
 
 [node name="pie1" parent="alpaca/Skeleton2D/cuerpo/pierna1/pierna1-1/pierna1-2" index="0"]
 rotation = -1.28843
-
-[node name="alpaca-animacion" parent="alpaca" index="5"]
-playback_speed = 2.6
 
 [editable path="alpaca"]
