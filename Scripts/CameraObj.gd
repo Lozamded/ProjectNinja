@@ -1,6 +1,8 @@
 extends Sprite
 
 export (NodePath) var playerPath
+
+export var lado = 0
 var player
 
 func _ready():
@@ -8,4 +10,5 @@ func _ready():
 	
 func _process(delta):
 	visible = false
-	position.x = player.position.x
+	position.x = player.position.x  + lado
+	

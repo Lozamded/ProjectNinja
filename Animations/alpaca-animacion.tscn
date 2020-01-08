@@ -29,7 +29,6 @@
 [ext_resource path="res://Sprites/alpaca/images/boton.png" type="Texture" id=27]
 [ext_resource path="res://Sprites/alpaca/alpaca2-01-03.png" type="Texture" id=28]
 
-
 [sub_resource type="Animation" id=1]
 length = 6.0
 loop = true
@@ -5156,7 +5155,7 @@ tracks/98/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "jump-caida"
 length = 2.4
 loop = true
@@ -6416,7 +6415,7 @@ tracks/104/keys = {
 "times": PoolRealArray(  )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/cuerpo/columna/hombro2/brazo2-1:position")
@@ -11335,11 +11334,10 @@ __meta__ = {
 
 [node name="brazo2-1" type="Node2D" parent="cuerpo/brazo2"]
 position = Vector2( 72.6066, -16.4116 )
-rotation = -0.7442
-scale = Vector2( 1, 1 )
+rotation = -0.744205
 
 [node name="brazo2-2" type="Node2D" parent="cuerpo/brazo2/brazo2-1"]
-position = Vector2( -10.0491, -19.0027 )
+position = Vector2( -10.049, -19.0027 )
 rotation = 0.607624
 scale = Vector2( 1, 1 )
 
@@ -11363,18 +11361,17 @@ texture = ExtResource( 3 )
 editor/display_folded = true
 
 [node name="pierna2-1" type="Node2D" parent="cuerpo/pierna2"]
-position = Vector2( 3.11208, -7.56988 )
+position = Vector2( 3.11207, -7.56989 )
 rotation = -0.850608
+scale = Vector2( 1, 1 )
 
 [node name="pierna2-2" type="Node2D" parent="cuerpo/pierna2/pierna2-1"]
-position = Vector2( -0.277992, 0.052227 )
-rotation = -0.00651615
-scale = Vector2( 1, 1 )
+position = Vector2( -0.277863, 0.0522041 )
+rotation = -0.0065098
 
 [node name="pie2" type="Node2D" parent="cuerpo/pierna2/pierna2-1/pierna2-2"]
-position = Vector2( 56.6795, 28.7433 )
-rotation = 0.81039
-scale = Vector2( 1, 1 )
+position = Vector2( 56.6796, 28.7431 )
+rotation = 0.810387
 
 [node name="pie2" type="Sprite" parent="cuerpo/pierna2/pierna2-1/pierna2-2/pie2"]
 position = Vector2( 0.971703, 77.1868 )
@@ -11394,15 +11391,16 @@ editor/display_folded = true
 [node name="pierna1-1" type="Node2D" parent="cuerpo/pierna1"]
 position = Vector2( -15.223, -26.2618 )
 rotation = -1.11578
+scale = Vector2( 1, 1 )
 
 [node name="pierna1-2" type="Node2D" parent="cuerpo/pierna1/pierna1-1"]
-position = Vector2( 16.61, 74.9178 )
-rotation = 1.96562
+position = Vector2( 16.6097, 74.9178 )
+rotation = 1.96563
+scale = Vector2( 1, 1 )
 
 [node name="pie1" type="Node2D" parent="cuerpo/pierna1/pierna1-1/pierna1-2"]
-position = Vector2( 48.8252, 46.0649 )
-rotation = 0.79383
-scale = Vector2( 1, 1 )
+position = Vector2( 48.8254, 46.0647 )
+rotation = 0.793827
 
 [node name="pie1" type="Sprite" parent="cuerpo/pierna1/pierna1-1/pierna1-2/pie1"]
 position = Vector2( -23.373, 76.9968 )
@@ -11420,17 +11418,16 @@ texture = ExtResource( 9 )
 editor/display_folded = true
 
 [node name="cuello" type="Node2D" parent="cuerpo/cabeza"]
-position = Vector2( 2.57265, -30.0351 )
-rotation = 0.387091
-scale = Vector2( 1, 1 )
+position = Vector2( 2.57264, -30.0351 )
+rotation = 0.387086
 
 [node name="cuello" type="Sprite" parent="cuerpo/cabeza/cuello"]
 position = Vector2( -1.45428, -88.6856 )
 texture = ExtResource( 10 )
 
 [node name="craneo" type="Node2D" parent="cuerpo/cabeza"]
-position = Vector2( 6.44732, -28.6181 )
-rotation = 0.34115
+position = Vector2( 6.44761, -28.618 )
+rotation = 0.341146
 scale = Vector2( 1, 1 )
 
 [node name="oreja2" type="Sprite" parent="cuerpo/cabeza/craneo"]
@@ -11461,9 +11458,8 @@ offset = Vector2( -6.69584, -10.9772 )
 
 [node name="tronco" type="Node2D" parent="cuerpo"]
 editor/display_folded = true
-position = Vector2( 0.614317, -30.7328 )
-rotation = 0.387091
-scale = Vector2( 1, 1 )
+position = Vector2( 0.614315, -30.7327 )
+rotation = 0.387086
 
 [node name="tronco1" type="Sprite" parent="cuerpo/tronco"]
 position = Vector2( 0.911758, -33.6845 )
@@ -11506,9 +11502,8 @@ internal_vertex_count = 12
 
 [node name="capa2" type="Node2D" parent="cuerpo"]
 visible = false
-position = Vector2( 0.0365486, -31.0442 )
-rotation = 0.387091
-scale = Vector2( 1, 1 )
+position = Vector2( 0.0365448, -31.0442 )
+rotation = 0.387086
 
 [node name="capa2" type="Sprite" parent="cuerpo/capa2"]
 position = Vector2( -2.31873, -77.5533 )
@@ -11518,12 +11513,12 @@ texture = ExtResource( 23 )
 
 [node name="brazo1-1" type="Node2D" parent="cuerpo/brazo1"]
 position = Vector2( -29.2601, -42.4714 )
-rotation = 0.929268
-scale = Vector2( 1, 1 )
+rotation = 0.929272
 
 [node name="brazo1-2" type="Node2D" parent="cuerpo/brazo1/brazo1-1"]
-position = Vector2( 1.06122, -6.25948 )
-rotation = -0.101754
+position = Vector2( 1.0612, -6.25954 )
+rotation = -0.101765
+scale = Vector2( 1, 1 )
 
 [node name="brazo1-2" type="Sprite" parent="cuerpo/brazo1/brazo1-1/brazo1-2"]
 position = Vector2( -34.5949, 0.677071 )
@@ -11536,8 +11531,8 @@ texture = ExtResource( 25 )
 
 [node name="capa" type="Node2D" parent="cuerpo"]
 editor/display_folded = true
-position = Vector2( -0.747784, -32.4222 )
-rotation = 0.420138
+position = Vector2( -0.747789, -32.4222 )
+rotation = 0.420136
 
 [node name="capa1" type="Sprite" parent="cuerpo/capa"]
 position = Vector2( -7.08283, -75.9571 )
@@ -11768,8 +11763,8 @@ anims/base = SubResource( 4 )
 anims/deslizar-entrada = SubResource( 5 )
 anims/deslizar-salida = SubResource( 6 )
 anims/down = SubResource( 7 )
-anims/jump-caida = SubResource( 9 )
-anims/jump-entrada = SubResource( 8 )
+anims/jump-caida = SubResource( 8 )
+anims/jump-entrada = SubResource( 9 )
 anims/jump-salida = SubResource( 10 )
 anims/run = SubResource( 11 )
 anims/stand = SubResource( 12 )

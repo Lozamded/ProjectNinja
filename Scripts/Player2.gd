@@ -142,35 +142,23 @@ func _physics_process(delta):
 		dashValue = dashconst
 	else:
 		dashValue = 1
-
-		
-	if Input.is_action_just_pressed("ui_attack") and move != 0:
-		#print ("hacer el dash")
-		estado = "enddash"
-		
-		if(canAttack == true):
-			canAttack = false
-			#sprite_previo = $SpriteUp.animation
-			attack = true
-			#$SpriteUp.speed_scale = 0.25
-			#$SpriteUp.animation = "Slash"
 			
 			
 			
 		
 #Saltos
 	
-	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and jump and dash ==false:
+	if ( Input.is_action_just_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.22) ) and jump and dash ==false:
 		playback.start("jump-entrada") 
 		saltando = true
 		enddash = false
 		canDash = true
 	
-	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.16 ) ) and move != 0 :
+	if ( Input.is_action_pressed("ui_accept") or (analogo.joystick_active == true and analogo.joystick_vector.y > 0.22) ) and move != 0 :
 		jump = false
 		
 		if saltando:
-			empujesalto = 2.24
+			empujesalto = 2.45
 			if subida < tope*0.95:
 				estado = "jump"
 				subida = lerp(subida,tope, 0.2)
