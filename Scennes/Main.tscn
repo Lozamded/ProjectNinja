@@ -12,7 +12,6 @@ extents = Vector2( 31.967, 9.69293 )
 [node name="Main" type="Node"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 520, 536 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -29,12 +28,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor2" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( -81.8506, 385.851 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -51,14 +49,13 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor2"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor3" type="StaticBody2D" parent="." groups=[
 "Walls",
 ]]
-editor/display_folded = true
 position = Vector2( 1012.94, 253.883 )
 rotation = -1.56633
 scale = Vector2( 8.35017, 0.45163 )
@@ -77,12 +74,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor3"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 177.775, 634.958 )
 rotation = -3.54262
 scale = Vector2( 15.75, 0.75 )
@@ -100,12 +96,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor4"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor5" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( -215.429, 241.48 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -127,7 +122,6 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor6" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1020.89, 738.092 )
 rotation = -2.49932
 scale = Vector2( 15.75, 0.75 )
@@ -145,12 +139,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor6"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor7" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1174.79, 174.066 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -172,7 +165,6 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Floor8" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 2107.59, 367.616 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -189,12 +181,11 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor8"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor9" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 2557.23, 200.199 )
 scale = Vector2( 15.75, 0.75 )
 collision_layer = 3
@@ -211,14 +202,13 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor9"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
 [node name="Floor10" type="StaticBody2D" parent="." groups=[
 "Walls",
 ]]
-editor/display_folded = true
 position = Vector2( 1618.09, 383.426 )
 rotation = -1.56633
 scale = Vector2( 8.35017, 0.45163 )
@@ -237,7 +227,7 @@ margin_bottom = 32.0
 color = Color( 0.017395, 0.296875, 0.0414128, 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="Floor10"]
-position = Vector2( -1.90735e-006, 0 )
+position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.46154, 1 )
 shape = SubResource( 1 )
 
@@ -279,10 +269,8 @@ position = Vector2( 1241.28, 48.7563 )
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 2 )]
-editor/display_folded = true
 position = Vector2( 405.099, 271.536 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -3.2998, 3.505 )
 current = true
-
